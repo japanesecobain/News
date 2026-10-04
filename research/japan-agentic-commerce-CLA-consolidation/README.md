@@ -38,4 +38,4 @@ python3 04_qa/test_bridge.py
 
 `qa_original_cla.py` needs pycel for its workbook check; the other checks run without it.
 
-**Repository state:** the assignment did not authorise commits or pushes, so this directory is **uncommitted**. Because the cloud container is ephemeral, it will be lost when the session ends unless it is committed or downloaded.
+**Repository state:** the assignment did not authorise commits or pushes. After the session's stop hook flagged untracked files, the user explicitly approved committing and pushing this directory only. It is commit `d1a10db` on `claude/affectionate-rubin-u8nx1x`. No PR was opened.
