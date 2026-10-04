@@ -1,0 +1,4 @@
+participant_id,purchase_id,window,platform,seller,shared_with,job,trigger_or_type,channel_or_friction,minutes_recalled,contacts,apps_touched,uncertainty,cash_tied_jpy,cash_tied_days,outcome,refund_state,current_tool,tool_satisfaction,residual_burden,provenance,coder,quote_paraphrase
+EXAMPLE-P00,EXAMPLE-P00-01,D30,RKT,3P,,J1,gift search,price+points,20,0,3,1,,,RES_FULL,NA,,4,MINOR,MEM,A,"SYNTHETIC EXAMPLE - compared 3 shops on points"
+EXAMPLE-P00,EXAMPLE-P00-01,D30,RKT,3P,,J3,,CARRIER_LINE,2,0,1,0,,,RES_FULL,NA,CARRIER_LINE,5,NONE,MEM,A,"SYNTHETIC EXAMPLE"
+EXAMPLE-P00,EXAMPLE-P00-02,D90,AMZ,1P,,J4,RETURN,merchant app,35,2,2,2,4980,12,RES_FULL,FUNDS_SEEN,MERCHANT_APP,3,MATERIAL,SELF_LOOK,A,"SYNTHETIC EXAMPLE - return label + refund wait"

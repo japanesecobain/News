@@ -1,0 +1,13 @@
+run_at_utc: 2026-10-04T22:05:20+00:00
+original_dir: research/japan-agentic-commerce-CLA (read-only)
+[1] workbook formulas vs python: 141 cells, 0 mismatches (implementation consistency only; not economic validity)
+[2] exported values vs exact in-memory: 288 numeric cells; 81 differ from the exact value (rounded on export)
+     largest relative loss: upside/f_min_handoff: exact 0.04925568438589746 stored 0.0493 (rel 9.00e-04)
+     largest relative loss: upside/f_min_paid_conv: exact 0.06147695530726257 stored 0.0615 (rel 3.75e-04)
+     largest relative loss: upside/val_act_m2: exact 1329.5827638836215 stored 1330.0 (rel 3.14e-04)
+     largest relative loss: upside/f_min_coverage: exact 0.13955777242670947 stored 0.1396 (rel 3.03e-04)
+     largest relative loss: base/attr_orders: exact 0.20475 stored 0.2047 (rel 2.44e-04)
+[3] dependency round trip (recompute from exported values): 138 outputs checked; 31 do not reconcile within their own displayed precision
+     sign flips among discrepancies: 0
+     interpretation: same defect class as Grok v2's 0.01-vs-0.012 export (rounded values saved as data). Headline in-memory results are unaffected; the saved table is not a lossless interchange format. Fixed in the derivative bridge (full-precision export + display column).
+note: the 2026-10-04 141/141 result was printed to the console only; no log file was retained. This file is a new re-run, not a historical receipt.

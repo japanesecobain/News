@@ -1,0 +1,13 @@
+run_at_utc: 2026-10-04T22:05:07+00:00
+scope: supplied GRO_04_economics_model_v2.csv only; calculate_r003_v2.py and audit JSON NOT supplied, so the reviewer's 29-check run was not reproduced
+[F1] exported attempts=0.05 failed=0.02 -> implied execution success 0.6 (matches reviewer-stated 0.60)
+[F1] exact attributable orders from reviewer-stated inputs = 0.01200000; exported = 0.01; 2-dp display of exact = 0.01
+[F1] exact x 80 = 0.96000000 (exported revenue 0.96); exported count x 80 = 0.80
+[F1] revenue / exported count implies JPY 96 per order, inconsistent with 80 -> the saved table does not reconcile
+[F1] headline contribution -29.04 = exact revenue 0.96 - 30 -> in-memory headline correct; defect is interchange/QA, not new economics
+[F1] REPRODUCED: True
+[F1] upside rows reconcile exactly: attributable 0.56 = attempts x success(0.8) x share(0.7) -> 0.5600; revenue/order = 544
+[F2] retained_fraction_by_month denominator='acquired_cohort', description='Share of the acquired cohort still active in month t.'
+[F2] payback row states: 'Cohort month-t contribution = activation x retained fraction x contribution per active user. Both rates are blank.'
+[F2] REPRODUCED (activation would be applied twice once inputs are filled): True; inputs currently blank so no numeric payback is wrong yet
+[F3] H02 text tests adequacy ('Current merchant apps, carrier notifications, email, wallets...') but evidence_status='contradicted_by_identified_evidence' rests on closed_scope='The broad claim that notification and timeline jobs are unserved. Parc...' -> split into H02a/H02b in CLA-D01

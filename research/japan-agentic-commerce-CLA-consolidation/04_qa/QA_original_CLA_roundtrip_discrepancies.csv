@@ -1,0 +1,32 @@
+scenario,output_id,key,unit,stored_value,recomputed_from_stored_inputs,abs_difference,note
+downside,CLA-O23,cac_ret,JPY/retained user,66667.0,66670.0,3.0,exceeds display half-unit 0.5
+downside,CLA-O26,val_act_m2,JPY/activated user,-209.609,-209.60563,0.0033700000000180808,exceeds display half-unit 5e-05
+downside,CLA-O27,val_act_m3,JPY/activated user,-197.0322,-197.0290075,0.003192499999983056,exceeds display half-unit 5e-05
+downside,CLA-O28,val_act_combo,JPY/activated user,-252.8058,-252.80173750000003,0.004062499999974989,exceeds display half-unit 5e-05
+downside,CLA-F06,f_min_handoff_cac,share,149.1384,149.1479378336304,0.009537833630417936,exceeds display half-unit 5e-05
+downside,CLA-F08,f_min_paid_conv_cac,share of actives,26.8068,26.808545476720134,0.0017454767201350307,exceeds display half-unit 5e-05
+downside,CLA-M03,annual_rev_m2,JPY/year,184835.0,184839.408,4.407999999995809,exceeds display half-unit 0.5
+downside,CLA-M04,annual_contrib_m2,JPY/year,-16800238.0,-16800609.072,371.07200000062585,exceeds display half-unit 0.5
+downside,CLA-M05,annual_rev_m3,JPY/year,1551704.0,1551738.24,34.23999999999069,exceeds display half-unit 0.5
+base,CLA-O02,inf_track,JPY/active/month,9.6255,9.6252,0.0003000000000010772,exceeds display half-unit 5e-05
+base,CLA-O10,m2_rev,JPY/active/month,21.422,21.4167375,0.005262500000000614,exceeds display half-unit 5e-05
+base,CLA-O12,inf_shop,JPY/active/month,24.0637,24.0636,9.999999999976694e-05,exceeds display half-unit 5e-05
+base,CLA-O14,m2_contrib,JPY/active/month,-30.6418,-30.641699999999997,0.00010000000000331966,exceeds display half-unit 5e-05
+base,CLA-O15,combo_contrib,JPY/active/month,-46.2673,-46.2672,9.999999999621423e-05,exceeds display half-unit 5e-05
+base,CLA-O23,cac_ret,JPY/retained user,10714.0,10715.0,1.0,exceeds display half-unit 0.5
+base,CLA-O26,val_act_m2,JPY/activated user,-121.1331,-121.13316375999999,6.37599999890881e-05,exceeds display half-unit 5e-05
+base,CLA-O28,val_act_combo,JPY/activated user,-182.9038,-182.90389036,9.036000000151034e-05,exceeds display half-unit 5e-05
+base,CLA-F05,f_max_human_min_per_order,minutes/order,-0.8441,-0.8443282852955546,0.00022828529555463106,exceeds display half-unit 5e-05
+base,CLA-F06,f_min_handoff_cac,share,4.1601,4.160375189884449,0.0002751898844488565,exceeds display half-unit 5e-05
+base,CLA-F08,f_min_paid_conv_cac,share of actives,2.2701,2.27022473658863,0.00012473658863010328,exceeds display half-unit 5e-05
+base,CLA-M03,annual_rev_m2,JPY/year,24441584.0,24441645.12,61.12000000104308,exceeds display half-unit 0.5
+base,CLA-M04,annual_contrib_m2,JPY/year,-34961010.0,-34961068.128,58.12799999862909,exceeds display half-unit 0.5
+base,CLA-M05,annual_rev_m3,JPY/year,23275560.0,23275584.0,24.0,exceeds display half-unit 0.5
+upside,CLA-O02,inf_track,JPY/active/month,11.5088,11.5092,0.00039999999999906777,exceeds display half-unit 5e-05
+upside,CLA-O06,m1_cost,JPY/active/month,22.0087,22.0088,9.999999999976694e-05,exceeds display half-unit 5e-05
+upside,CLA-O15,combo_contrib,JPY/active/month,166.9293,166.92940000000002,0.00010000000000331966,exceeds display half-unit 5e-05
+upside,CLA-O19,m4_cost,JPY/MAU/month,19.7587,19.7588,9.999999999976694e-05,exceeds display half-unit 5e-05
+upside,CLA-O29,max_cpi_m2,JPY/install,497.264,497.42,0.1560000000000059,exceeds display half-unit 5e-05
+upside,CLA-O31,max_cpi_combo,JPY/install,465.1918,465.256,0.06419999999997117,exceeds display half-unit 5e-05
+upside,CLA-M03,annual_rev_m2,JPY/year,1623889237.0,1623889388.7192001,151.71920013427734,exceeds display half-unit 0.5
+upside,CLA-M04,annual_contrib_m2,JPY/year,1357269984.0,1357270136.3352,152.33520007133484,exceeds display half-unit 0.5

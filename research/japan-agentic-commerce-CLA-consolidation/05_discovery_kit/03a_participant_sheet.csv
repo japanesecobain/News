@@ -1,0 +1,2 @@
+participant_id,household_id,selection_arm,unit_role,interview_date,interview_minutes,purchases_in_window_D30,platforms_used,primary_notification_channel,exceptions_D90_count,least_wanted_job,most_helpful_current_tool,would_try_research_concierge,would_adopt_independent_product,delegation_ceiling,record_shown,consent_recording,consent_retention,consent_ai_upload,notes
+EXAMPLE-P00,EXAMPLE-H00,ACT,HHC,2026-10-XX,52,6,AMZ;RKT;SHP,CARRIER_LINE,1,J4,CARRIER_LINE,MAYBE,N,SUGGEST,DECLINED,Y,N,N,"SYNTHETIC EXAMPLE ROW - delete before use"

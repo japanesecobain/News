@@ -1,0 +1,9 @@
+job,required_field,candidate_lifecycle_source,what_is_observed,scope_of_observation,untested_dependency,test
+Delivery coordination,Order identity (order number),Initial order-confirmation email,Reported to remain present (order total and link),"US accounts, initial confirmation, from ~2026-07-08",Present in amazon.co.jp confirmations?,"CLA-E001 (founder's own messages, local review)"
+Delivery coordination,Item identity (name/quantity/price),Initial order-confirmation email,Reported replaced by categories ('1 Home item'),"US accounts, initial confirmation",Whether amazon.co.jp changed; whether later messages carry items,CLA-E001
+Delivery coordination,Shipment/package identity and carrier tracking number,Shipment-confirmation email,NOT OBSERVED by any researcher,-,Present in JP shipment emails? Amazon-delivered parcels have no external carrier number,CLA-E001
+Delivery coordination,Delivery status/ETA,Carrier notices (LINE/email) for carrier-delivered parcels; Amazon app for own delivery,Carrier flows documented (CLA-S085/S086/S088),JP carriers,Share of Amazon parcels on own delivery (not found),Discovery: record which channel informed the user
+Exception assistance,Return window / return status,Return emails; Amazon order page (user only),NOT OBSERVED,-,Content of JP return emails,CLA-E001 + discovery records
+Exception assistance,Refund requested vs issued vs funds received,Refund email (issuance as reported by merchant); card/bank statement (receipt),NOT OBSERVED,-,Whether refund emails state amount/date; receipt requires user's statement,Discovery records (voluntary)
+Offer selection,"Product, price, availability",Creators API (gated); product page (user view),API threshold reported,Associates programme,Threshold for a new entrant,n/a in discovery
+Checkout execution,-,-,Excluded (ADJ-01),-,-,Permitted-path memo only

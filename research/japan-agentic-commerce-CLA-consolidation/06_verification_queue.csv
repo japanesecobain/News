@@ -1,0 +1,21 @@
+vq_id,item,exact_page_or_artifact,why_decision_critical,blocks,who_can_do_it
+VQ-01,Amazon.co.jp Associates Japanese operating agreement and programme policies,https://affiliate.amazon.co.jp/help/operating/agreement ; .../policies/,Decides delegated execution and assistant-surface referral eligibility,J1 monetisation; J2,Founder (public page read) or counsel
+VQ-02,"Rakuten affiliate guideline full text: closed tools, corporate partners, competing service, JPY 3,000 basis",https://affiliate.rakuten.co.jp/guideline/rule/,Decides whether any personal-assistant referral can earn Rakuten revenue,J1 monetisation,Founder
+VQ-03,Rakuten FAQ on email/LINE referrals,https://affiliate.faq.rakuten.net/detail/000015637,Confirms reading of VQ-02,J1,Founder
+VQ-04,Standalone merchant and wallet terms (pick only merchants named in discovery),Merchant ToS/affiliate pages; Amazon Pay/Rakuten Pay/PayPay merchant/consumer terms,Needed before any 'no path' statement and before a permitted-path memo,J2,Founder after discovery
+VQ-05,ValueCommerce/A8 terms on private/app distribution,valuecommerce.ne.jp; a8.net terms,Referral eligibility on assistant surfaces,J1,Founder
+VQ-06,Visa 2026-08-17 release and chart,visa.co.jp newsroom release; chart image,"Base (entire 4,120 or subgroup) and option wording for 27%/5%/1%",H03b wording only,Founder
+VQ-07,Visa Agentic Ready release,https://www.visa.co.jp/about-visa/newsroom/press-releases/nr-jp-260430-2.html,Programme scope; any merchant/agent eligibility,J2 permitted-path memo,Founder
+VQ-08,MIC 家計消費状況調査 2025 (gk01.pdf; household-type tables),https://www.stat.go.jp/data/joukyou/2025ar/gaikyou/pdf/gk01.pdf,Household-type scope; single-person usage,Any future sizing,Founder (not needed for discovery)
+VQ-09,Latest household counts by type,Census / Statistics Bureau,Denominator,Any future sizing,Founder (not needed for discovery)
+VQ-10,"Founder's own amazon.co.jp messages by type (confirmation, shipment, delivery, return, refund)","Founder mailbox, local review, redacted notes only",Whether item names and tracking numbers survive in JP,"J3, J4",Founder
+VQ-11,Google restricted-scope/CASA FAQ and an assessor quote for a specific architecture,developers.google.com OAuth verification FAQ,Only if an OAuth design is ever chosen,Later,Founder/engineer
+VQ-12,Shopify ChatGPT channel help page,https://help.shopify.com/en/manual/online-sales-channels/agentic-storefronts/chatgpt,Scope check only,None,Optional
+VQ-13,OpenAI 2026-03-24 and 2025-09-29 pages,openai.com,Scope check only,None,Optional
+VQ-14,LY 2026-08-20 story / release 020777 definition of AI-via merchandise value,lycorp.co.jp,Interpreting incumbent strength,None,Optional
+VQ-15,Parcel listing and tested capability on Japanese orders,apps.apple.com/jp/app/parcel/id375589283,Benchmark baseline if J3 is selected,J3 follow-on,Founder in follow-on
+VQ-16,Carrier member terms on third-party/automated access and delegated changes,"Kuroneko Members, Smart Club, ゆうID terms",Only if coordination product needs carrier actions,J3,Later
+VQ-17,"Grok v1 CSVs, calculate_r003_v2.py, reviewer audit JSON, R003_v2_addendum, GRO 06/07 v2",Reviewer handoff zip (not supplied to CLA),Reproduce the 29 checks; finish GRO row adjudication,Ledger completeness,Reviewer to supply
+VQ-18,Gemini correction table,Reviewer handoff zip (not supplied to CLA),Confirm GEM proposition wording,Ledger completeness,Reviewer to supply
+VQ-19,Google UCP announcement date and Universal Cart scope,https://developers.googleblog.com/under-the-hood-universal-commerce-protocol-ucp/,Date hygiene only,None,Optional
+VQ-20,MLIT April 2026 redelivery release,mlit.go.jp,Context for J3,None,Optional

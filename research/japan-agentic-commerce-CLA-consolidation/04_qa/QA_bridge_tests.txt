@@ -1,0 +1,23 @@
+run_at_utc: 2026-10-04T22:05:20+00:00
+bridge: 03_derivatives/bridge/bridge_model.py
+
+PASS  roundtrip: recompute from re-imported exported inputs reproduces every exported output (unit-aware tolerance)  [129 outputs, 0 mismatches []]
+PASS  precision: 0.012 attributable orders survives export/import exactly  [exact=0.012 display=0.0120]
+PASS  precision: 2-dp display of 0.012 is 0.01, and 0.01 x 80 != 0.012 x 80 (why display values must not be data)  [0.80 vs 0.96]
+PASS  display isolation: downstream recomputed from a DISPLAYED intermediate diverges, from the EXACT intermediate it reconciles  [display-based 9.6000 vs exact 9.625500; exact-based 9.625500]
+PASS  unknown: observed-scenario outputs that depend on unmeasured inputs are blank with status 'unknown' (not 0)  [{'c01_cost': ('', 'unknown'), 'c01_contribution': ('', 'unknown'), 'c03_cost': ('', 'unknown'), 'c03_revenue_if_approved': ('', 'unknown'), 'c04b_labor': ('', 'unknown'), 'c07_contribution': ('', 'unknown'), 'ltv36_per_acquired_c01': ('', 'unknown')}]
+PASS  rule zero: gated C03 booked revenue is 0 with status 'rule_zero_underwriting_exclusion' and commercial_amount 'unknown'
+PASS  rule zero: passive affiliate revenue is a program-rule 0 input, not an unknown
+PASS  unknown is not zero: C07 contribution stays blank in every scenario while integration cost is unknown
+PASS  gate: C02 execution is not computed in any scenario
+PASS  cohort: a x r_t x c_t equals q_t x c_t when q_t = a x r_t
+PASS  cohort: passing activation together with an acquired-based q_t raises (double-count guard)
+PASS  cohort: the double-count the guard prevents would understate value by factor a  [single=8.3017 double=1.7434]
+PASS  cohort: 'never' payback is distinct from unknown
+PASS  C04: reviewer's 40% x 1 case x 15 min x JPY50 = JPY300 per household-month reproduced
+PASS  C04: at JPY40/MAU after the illustrative tracking core, affordable submission x human-share x minutes < 0.5  [{'max_psm_fee32_labor_only': 1.6, 'max_psm_fee40_labor_only': 2.0, 'max_psm_fee40_after_tracking_core': 0.41872500000000007, 'tracking_core_A': 31.6255}]
+PASS  labour: exactly one per-minute price key; fixed team cost is not in the bridge  [['labor_jpy_per_min']]
+PASS  factors once: coverage/handoff/completion/attribution each appear once in each C03 volume formula  [2 = booked + if_approved formulas]
+
+17/17 passed
+scope note: these tests prove arithmetic, interchange and labelling discipline. They do NOT show that any configuration is permitted, wanted or profitable.

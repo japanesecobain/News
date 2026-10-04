@@ -1,0 +1,322 @@
+config,scenario,variable_id,kind,description,unit,unit_class,value_exact,value_display,status,permission_status,applicability_status,underwriting_treatment,commercial_amount,formula,source_ids,note
+ALL,observed,fx,input,JPY per USD for API list prices,JPY/USD,ratio,155.0,155.0000,derived_assumption,,,,,,CLA-S090,Search-reported 2026 average ~158; not an official rate
+ALL,observed,small_in,input,Small-model input list price (Claude Haiku 4.5),USD/M tokens,usd,1.0,1.00,sourced,,,,,,CLA-S091,Official unit price; workload is separate
+ALL,observed,small_out,input,Small-model output list price,USD/M tokens,usd,5.0,5.00,sourced,,,,,,CLA-S091,
+ALL,observed,mid_in,input,Mid-model input list price (Claude Sonnet 5.5),USD/M tokens,usd,2.0,2.00,sourced,,,,,,CLA-S091,
+ALL,observed,mid_out,input,Mid-model output list price,USD/M tokens,usd,10.0,10.00,sourced,,,,,,CLA-S091,
+ALL,observed,labor_jpy_per_min,input,Human minute priced once (paid staff or founder at replacement cost),JPY/minute,jpy,50.0,50.00,derived_assumption,,,,,,CLA-S073,"From Tokyo CS postings JPY 1,650-1,750/h x ~1.75 load; not a wage statistic"
+C01,observed,line_price,input,LINE official account additional message (<=200k/month),JPY/message,jpy,3.0,3.00,sourced,,,,,,CLA-S050,Search extract of LY notice effective 2026-10-01
+ALL,observed,store_fee,input,Billing/app-store fee on subscriptions,share,share,,,unknown,,,,,,,Not researched
+C01,observed,orders_hh,input,Physical-goods orders per active household-month,orders/household-month,count,,,unknown,,,,,,,"No measured frequency (MIC gives spend, not orders)"
+C01,observed,emails_per_order,input,Commerce emails per order reaching the service,emails/order,count,,,unknown,,,,,,,Depends on capture method and merchant
+C01,observed,tok_in_email,input,Input tokens per parsed email,tokens,tokens,,,unknown,,,,,,,"Workload assumption, not measured"
+C01,observed,tok_out_email,input,Output tokens per parsed email,tokens,tokens,,,unknown,,,,,,,
+ALL,observed,retry_overhead,input,Retry/failed-parse multiplier on model workload,multiplier,ratio,,,unknown,,,,,,,
+C01,observed,notif_per_order,input,User notifications per order,messages/order,count,,,unknown,,,,,,,
+C01,observed,line_share,input,Share of notifications sent as paid LINE messages,share,share,,,unknown,,,,,,,
+C01,observed,hosting_c01,input,Variable hosting for tracking,JPY/household-month,jpy,,,unknown,,,,,,,
+C01,observed,support_c01_rate,input,Support contacts for a read-only tracker (NOT shared with C02/C04),contacts/household-month,count,,,unknown,,,,,,,Separated per product (Grok v2 correction)
+C01,observed,support_c01_min,input,Minutes per tracker support contact,minutes,minutes,,,unknown,,,,,,,
+C01,observed,ingest_exc_rate,input,Ingestion exceptions needing human review (incl. false positives),cases/household-month,count,,,unknown,,,,,,,
+C01,observed,ingest_exc_min,input,Minutes per ingestion review,minutes,minutes,,,unknown,,,,,,,
+C01,observed,paid_share_c01,input,Active households paying a tracker subscription,share,share,,,unknown,,,,,,,Willingness to pay unmeasured; Parcel's listed price is not a ceiling or evidence of payment
+C01,observed,price_c01,input,Tracker subscription list price,JPY/month,jpy,,,unknown,,,,,,,
+C01,observed,passive_affiliate,input,Affiliate revenue from historical receipts (no qualifying click),JPY/household-month,jpy,0.0,0.00,rule,,,,,,GRO-S039;CLA-S030,Rule zero: not a commission-generating event. Distinct from unknown.
+C02,observed,c02_permitted_path,input,A connected permitted path exists for the intended cross-merchant execution task,boolean,flag,False,False,rule,,,,,,CLA-S046;GRO-S038,None established among researched surfaces; standalone merchants and wallets unresearched
+C03,observed,c03_eligible_share_booked,input,Share of orders whose program x interface is approved for a personal-assistant surface,share,share,0.0,0.0000,rule,,,,,,CLA-S124;CLA-S125;GRO-S038,Underwriting exclusion: Rakuten restricts closed/one-to-one tools except approved corporate partners; Amazon/Yahoo/ASP terms for this surface unread. Not a measured zero of opportunity.
+C03,observed,c03_eligible_share_if_approved,input,Share of orders eligible IF program approvals were obtained,share,share,,,unknown,,,,,,,Conditional on approvals that do not exist today
+C03,observed,handoff_share,input,Eligible orders started through the assistant,share,share,,,unknown,,,,,,,No observed behaviour
+C03,observed,completion,input,Handoff -> user completes purchase on merchant site,share,share,,,unknown,,,,,,,
+C03,observed,attribution,input,"Completed -> commission credited (window, no override, eligible item)",share,share,,,unknown,,,,,,,
+C03,observed,aov,input,Average order value of referred orders,JPY/order,jpy,,,unknown,,,,,,,
+C03,observed,comm_rate,input,Commission rate,share of order value,share,,,unknown,,,,,,CLA-S030;CLA-S031,Search-reported ranges; official tables unread by CLA
+C03,observed,cap_per_order,input,Ordinary per-item reward cap (Rakuten),JPY/order,jpy,1000.0,1000.00,sourced,,,,,,GRO-S039,Observed by GRO on the guideline page; treated as one item per order here
+C03,observed,clawback,input,Share reversed by cancellation/return,share,share,,,unknown,,,,,,,
+C03,observed,passthrough,input,Share of commission returned to user,share,share,,,unknown,,,,,,,
+C03,observed,sessions,input,Comparison sessions per active household-month,sessions/household-month,count,,,unknown,,,,,,,
+C03,observed,tok_in_sess,input,Input tokens per session,tokens,tokens,,,unknown,,,,,,,
+C03,observed,tok_out_sess,input,Output tokens per session,tokens,tokens,,,unknown,,,,,,,
+C03,observed,hosting_c03,input,Variable hosting for comparison,JPY/household-month,jpy,,,unknown,,,,,,,
+C03,observed,support_c03_rate,input,Support contacts for comparison/handoff,contacts/household-month,count,,,unknown,,,,,,,
+C03,observed,support_c03_min,input,Minutes per comparison support contact,minutes,minutes,,,unknown,,,,,,,
+C04,observed,affected_share,input,Active households with >=1 exception in the month,share,share,,,unknown,,,,,,,"0.40 is CLA's proposed proceed threshold, not an observed rate"
+C04,observed,incidents_per_affected,input,Exceptions per affected household-month,cases/household-month,count,,,unknown,,,,,,,
+C04a,observed,draft_uptake,input,Detected exceptions for which a draft is generated and used,share,share,,,unknown,,,,,,,
+C04a,observed,tok_in_draft,input,Input tokens per draft,tokens,tokens,,,unknown,,,,,,,
+C04a,observed,tok_out_draft,input,Output tokens per draft,tokens,tokens,,,unknown,,,,,,,
+C04a,observed,draft_qa_share,input,Drafts reviewed by a human before sending,share,share,,,unknown,,,,,,,
+C04a,observed,draft_qa_min,input,Minutes per human draft review,minutes,minutes,,,unknown,,,,,,,
+C04a,observed,user_min_per_draft,input,Minutes the USER still spends per drafted case,minutes,minutes,,,unknown,,,,,,,Benefit-side cost borne by user; not provider cost and not zero
+C04b,observed,submission_prob,input,Affected households that submit the case to the service,share,share,,,unknown,,,,,,,
+C04b,observed,human_share,input,Submitted cases handled by a human,share,share,,,unknown,,,,,,,
+C04b,observed,base_min,input,First-touch minutes per handled case,minutes,minutes,,,unknown,,,,,,,Includes unsuccessful/unresolved cases
+C04b,observed,repeat_contacts,input,Repeat contacts per handled case,contacts/case,count,,,unknown,,,,,,,
+C04b,observed,repeat_min,input,Minutes per repeat contact,minutes,minutes,,,unknown,,,,,,,
+C04b,observed,escalation_prob,input,Handled cases escalated,share,share,,,unknown,,,,,,,
+C04b,observed,escalation_min,input,Extra minutes per escalation,minutes,minutes,,,unknown,,,,,,,
+C04b,observed,fp_cases,input,False-positive cases opened per active household-month,cases/household-month,count,,,unknown,,,,,,,
+C04b,observed,fp_min,input,Minutes per false-positive case,minutes,minutes,,,unknown,,,,,,,
+C07,observed,partner_fee,input,Fee paid by partner per MAU-month,JPY/MAU-month,jpy,,,unknown,,,,,,,"CLA's earlier JPY 32-40 was a derived break-even, not a quote"
+C07,observed,support_transfer,input,Share of tracker support absorbed by partner,share,share,,,unknown,,,,,,,"Transferred, not eliminated: appears as partner-side cost"
+C07,observed,partner_integration_per_mau,input,Amortised integration/onboarding/sales cost per MAU-month (startup side),JPY/MAU-month,jpy,,,unknown,,,,,,,Unknown in every scenario: no sales or integration evidence
+COHORT,observed,cpi,input,Acquisition cost per acquired user,JPY/acquired,jpy,,,unknown,,,,,,CLA-S070;CLA-S071,Dated third-party benchmarks
+COHORT,observed,activation,input,a = P(activated | acquired),share,share,,,unknown,,,,,,,Applied exactly once
+COHORT,observed,p_active_m3,input,P(active in month 3 | activated),share,share,,,unknown,,,,,,,
+COHORT,observed,churn_after_m3,input,Monthly churn after month 3 among activated,share/month,share,,,unknown,,,,,,,
+C01,observed,cost_per_email,output,Model cost per parsed email (official price x workload assumption),JPY/email,jpy,,,unknown,,,,,(tok_in*small_in+tok_out*small_out)/1e6*fx*retry_overhead,,
+C01,observed,c01_emails,output,Emails processed,emails/household-month,count,,,unknown,,,,,orders_hh*emails_per_order,,
+C01,observed,c01_inference,output,Tracking inference cost,JPY/household-month,jpy,,,unknown,,,,,c01_emails*cost_per_email,,
+C01,observed,c01_notif,output,Paid notification cost,JPY/household-month,jpy,,,unknown,,,,,orders_hh*notif_per_order*line_share*line_price,,
+C01,observed,c01_support,output,Tracker support cost,JPY/household-month,jpy,,,unknown,,,,,support_c01_rate*support_c01_min*labor,,
+C01,observed,c01_ingest_review,output,Ingestion review cost,JPY/household-month,jpy,,,unknown,,,,,ingest_exc_rate*ingest_exc_min*labor,,
+C01,observed,c01_cost,output,Tracking variable cost,JPY/household-month,jpy,,,unknown,,,,,sum of C01 cost lines + hosting_c01,,
+C01,observed,c01_sub_revenue,output,Subscription revenue,JPY/household-month,jpy,,,unknown,,,,,paid_share*price*(1-store_fee),,
+C01,observed,c01_revenue,output,Total revenue (subscription + rule-zero passive affiliate),JPY/household-month,jpy,,,unknown,passive affiliate = rule zero,n/a,subscription unmeasured,unknown beyond rule zero,c01_sub_revenue+passive_affiliate,,
+C01,observed,c01_contribution,output,Tracking contribution,JPY/household-month,jpy,,,unknown,,,,,c01_revenue-c01_cost,,
+C01,observed,c01_breakeven_paid_share,output,Paid share needed to cover C01 variable cost,share,share,,,unknown,,,,,c01_cost/(price*(1-store_fee)),,
+C02,observed,c02_contribution_per_attempt,output,Execution contribution per permitted attempt,JPY/attempt,jpy,,,gated_not_computed,no connected permitted path established,standalone merchants/wallets unresearched,execution not approved,unknown,NOT COMPUTED: no connected permitted path (gate),,
+C03,observed,c03_net_per_txn,output,"Net retained commission per attributable transaction (cap, clawback, pass-through applied once)",JPY/transaction,jpy,,,unknown,,,,,"min(aov*comm_rate,cap)*(1-clawback)*(1-passthrough)",,
+C03,observed,c03_txn_booked,output,Attributable transactions under current underwriting gates,transactions/household-month,count,0.0,0.0000,rule_zero_underwriting_exclusion,,,,,orders*eligible_booked*handoff*completion*attribution,,
+C03,observed,c03_txn_if_approved,output,Attributable transactions IF program approvals obtained,transactions/household-month,count,,,unknown,,,,,orders*eligible_if_approved*handoff*completion*attribution,,
+C03,observed,c03_revenue_booked,output,Booked referral revenue (personal-assistant surface),JPY/household-month,jpy,0.0,0.00,rule_zero_underwriting_exclusion,restricted or unresolved by program x surface,Rakuten closed-tool restriction (search extract); Amazon/Yahoo/ASP surface terms unread,excluded from investment case,unknown,c03_txn_booked*c03_net_per_txn,,
+C03,observed,c03_revenue_if_approved,output,Conditional referral revenue IF approved,JPY/household-month,jpy,,,unknown,,,,,c03_txn_if_approved*c03_net_per_txn,,
+C03,observed,cost_per_session,output,Model cost per comparison session,JPY/session,jpy,,,unknown,,,,,(tok_in_sess*mid_in+tok_out_sess*mid_out)/1e6*fx*retry_overhead,,
+C03,observed,c03_cost,output,Comparison variable cost,JPY/household-month,jpy,,,unknown,,,,,sessions*cost_per_session+hosting_c03+support,,
+C03,observed,c03_contribution_booked,output,Comparison contribution under current gates,JPY/household-month,jpy,,,unknown,restricted or unresolved by program x surface,as above,excluded from investment case,unknown,c03_revenue_booked-c03_cost,,
+C03,observed,c03_contribution_if_approved,output,Comparison contribution IF approved (conditional),JPY/household-month,jpy,,,unknown,,,,,c03_revenue_if_approved-c03_cost,,
+C04,observed,c04_cases,output,Exceptions per active household-month,cases/household-month,count,,,unknown,,,,,affected_share*incidents_per_affected,,
+C04a,observed,c04a_drafts,output,Drafts used,drafts/household-month,count,,,unknown,,,,,c04_cases*draft_uptake,,
+C04a,observed,cost_per_draft,output,Model cost per draft,JPY/draft,jpy,,,unknown,,,,,(tok_in_draft*mid_in+tok_out_draft*mid_out)/1e6*fx*retry_overhead,,
+C04a,observed,c04a_cost,output,Drafting provider cost incl. human QA,JPY/household-month,jpy,,,unknown,,,,,drafts*cost_per_draft+drafts*qa_share*qa_min*labor,,
+C04a,observed,c04a_user_minutes,output,User minutes still spent (benefit-side; not zero),minutes/household-month,minutes,,,unknown,,,,,drafts*user_min_per_draft,,
+C04a,observed,c04a_breakeven_revenue,output,Revenue needed to cover drafting cost (payment mechanism unknown),JPY/household-month,jpy,,,unknown,,,,,=c04a_cost,,
+C04b,observed,c04b_handled_cases,output,Human-handled cases,cases/household-month,count,,,unknown,,,,,c04_cases*submission_prob*human_share,,
+C04b,observed,c04b_min_per_handled,output,Minutes per handled case incl. repeats and escalation,minutes/case,minutes,,,unknown,,,,,base_min+repeat_contacts*repeat_min+escalation_prob*escalation_min,,
+C04b,observed,c04b_labor,output,Human resolution labour incl. false positives,JPY/household-month,jpy,,,unknown,,,,,handled*min_per_handled*labor+fp_cases*fp_min*labor,,
+C04b,observed,c04b_cost_per_handled_case,output,Labour per handled case (break-even per-case fee before other costs),JPY/case,jpy,,,unknown,,,,,c04b_labor/c04b_handled_cases,,
+C04b,observed,reviewer_300_check,output,Reviewer arithmetic: 0.40 x 1 case x all submit x all human x 15 min x labour,JPY/household-month,jpy,300.0,300.00,conditional_sensitivity_not_observed,,,,,0.40*1*1*1*15*labor,,
+C07,observed,c07_startup_cost,output,Startup variable cost per partner MAU incl. integration,JPY/MAU-month,jpy,,,unknown,,,,,inference+hosting+support*(1-transfer)+ingest_review+integration,,
+C07,observed,c07_startup_cost_excl_integration,output,Startup variable cost per partner MAU excl. unknown integration,JPY/MAU-month,jpy,,,unknown,,,,,inference+hosting+support*(1-transfer)+ingest_review,,
+C07,observed,c07_contribution,output,Startup contribution per partner MAU (integration unknown -> blank),JPY/MAU-month,jpy,,,unknown,,,,,partner_fee-c07_startup_cost,,
+C07,observed,c07_contribution_excl_integration,output,Startup contribution per MAU before integration/sales cost (upper bound),JPY/MAU-month,jpy,,,unknown,,,,,partner_fee-c07_startup_cost_excl_integration,,
+C07,observed,c07_partner_min_benefit,output,"Partner must realise at least this benefit per MAU (fee + transferred support), before its own integration cost",JPY/MAU-month,jpy,,,unknown,,,,,partner_fee+support*transfer,,
+C07+C04b,observed,c07c04b_contribution_excl_integration,output,Partner-fee tracking PLUS human case resolution (upper bound),JPY/MAU-month,jpy,,,unknown,,,,,c07_contribution_excl_integration-c04b_labor,,
+C01+C03,observed,c0103_contribution_booked,output,Explicit combination under current gates,JPY/household-month,jpy,,,unknown,,,,,(c01_revenue+c03_revenue_booked)-(c01_cost+c03_cost),,
+COHORT,observed,payback_c03_if_approved,output,"Payback month per acquired user, C03 if approved (0 = not within 36 months; blank = unknown)",month,months,,,unknown,,,,,a*r_t*c_t cumulative >= cpi,,
+COHORT,observed,ltv36_per_acquired_c03_if_approved,output,"36-month contribution per acquired user, C03 if approved",JPY/acquired,jpy,,,unknown,,,,,sum_t a*r_t*c_t,,
+COHORT,observed,payback_c01,output,"Payback month per acquired user, C01",month,months,,,unknown,,,,,a*r_t*c_t cumulative >= cpi,,
+COHORT,observed,ltv36_per_acquired_c01,output,"36-month contribution per acquired user, C01",JPY/acquired,jpy,,,unknown,,,,,sum_t a*r_t*c_t,,
+ALL,illustrative_A,fx,input,JPY per USD for API list prices,JPY/USD,ratio,155.0,155.0000,derived_assumption,,,,,,CLA-S090,Search-reported 2026 average ~158; not an official rate
+ALL,illustrative_A,small_in,input,Small-model input list price (Claude Haiku 4.5),USD/M tokens,usd,1.0,1.00,sourced,,,,,,CLA-S091,Official unit price; workload is separate
+ALL,illustrative_A,small_out,input,Small-model output list price,USD/M tokens,usd,5.0,5.00,sourced,,,,,,CLA-S091,
+ALL,illustrative_A,mid_in,input,Mid-model input list price (Claude Sonnet 5.5),USD/M tokens,usd,2.0,2.00,sourced,,,,,,CLA-S091,
+ALL,illustrative_A,mid_out,input,Mid-model output list price,USD/M tokens,usd,10.0,10.00,sourced,,,,,,CLA-S091,
+ALL,illustrative_A,labor_jpy_per_min,input,Human minute priced once (paid staff or founder at replacement cost),JPY/minute,jpy,50.0,50.00,derived_assumption,,,,,,CLA-S073,"From Tokyo CS postings JPY 1,650-1,750/h x ~1.75 load; not a wage statistic"
+C01,illustrative_A,line_price,input,LINE official account additional message (<=200k/month),JPY/message,jpy,3.0,3.00,sourced,,,,,,CLA-S050,Search extract of LY notice effective 2026-10-01
+ALL,illustrative_A,store_fee,input,Billing/app-store fee on subscriptions,share,share,0.15,0.1500,scenario,,,,,,,Not researched
+C01,illustrative_A,orders_hh,input,Physical-goods orders per active household-month,orders/household-month,count,4.0,4.0000,scenario,,,,,,,"No measured frequency (MIC gives spend, not orders)"
+C01,illustrative_A,emails_per_order,input,Commerce emails per order reaching the service,emails/order,count,3.0,3.0000,scenario,,,,,,,Depends on capture method and merchant
+C01,illustrative_A,tok_in_email,input,Input tokens per parsed email,tokens,tokens,3000.0,3000,scenario,,,,,,,"Workload assumption, not measured"
+C01,illustrative_A,tok_out_email,input,Output tokens per parsed email,tokens,tokens,300.0,300,scenario,,,,,,,
+ALL,illustrative_A,retry_overhead,input,Retry/failed-parse multiplier on model workload,multiplier,ratio,1.15,1.1500,scenario,,,,,,,
+C01,illustrative_A,notif_per_order,input,User notifications per order,messages/order,count,2.0,2.0000,scenario,,,,,,,
+C01,illustrative_A,line_share,input,Share of notifications sent as paid LINE messages,share,share,0.25,0.2500,scenario,,,,,,,
+C01,illustrative_A,hosting_c01,input,Variable hosting for tracking,JPY/household-month,jpy,6.0,6.00,scenario,,,,,,,
+C01,illustrative_A,support_c01_rate,input,Support contacts for a read-only tracker (NOT shared with C02/C04),contacts/household-month,count,0.03,0.0300,scenario,,,,,,,Separated per product (Grok v2 correction)
+C01,illustrative_A,support_c01_min,input,Minutes per tracker support contact,minutes,minutes,8.0,8.00,scenario,,,,,,,
+C01,illustrative_A,ingest_exc_rate,input,Ingestion exceptions needing human review (incl. false positives),cases/household-month,count,0.05,0.0500,scenario,,,,,,,
+C01,illustrative_A,ingest_exc_min,input,Minutes per ingestion review,minutes,minutes,4.0,4.00,scenario,,,,,,,
+C01,illustrative_A,paid_share_c01,input,Active households paying a tracker subscription,share,share,0.05,0.0500,scenario,,,,,,,Willingness to pay unmeasured; Parcel's listed price is not a ceiling or evidence of payment
+C01,illustrative_A,price_c01,input,Tracker subscription list price,JPY/month,jpy,480.0,480.00,scenario,,,,,,,
+C01,illustrative_A,passive_affiliate,input,Affiliate revenue from historical receipts (no qualifying click),JPY/household-month,jpy,0.0,0.00,rule,,,,,,GRO-S039;CLA-S030,Rule zero: not a commission-generating event. Distinct from unknown.
+C02,illustrative_A,c02_permitted_path,input,A connected permitted path exists for the intended cross-merchant execution task,boolean,flag,False,False,rule,,,,,,CLA-S046;GRO-S038,None established among researched surfaces; standalone merchants and wallets unresearched
+C03,illustrative_A,c03_eligible_share_booked,input,Share of orders whose program x interface is approved for a personal-assistant surface,share,share,0.0,0.0000,rule,,,,,,CLA-S124;CLA-S125;GRO-S038,Underwriting exclusion: Rakuten restricts closed/one-to-one tools except approved corporate partners; Amazon/Yahoo/ASP terms for this surface unread. Not a measured zero of opportunity.
+C03,illustrative_A,c03_eligible_share_if_approved,input,Share of orders eligible IF program approvals were obtained,share,share,0.75,0.7500,scenario,,,,,,,Conditional on approvals that do not exist today
+C03,illustrative_A,handoff_share,input,Eligible orders started through the assistant,share,share,0.15,0.1500,scenario,,,,,,,No observed behaviour
+C03,illustrative_A,completion,input,Handoff -> user completes purchase on merchant site,share,share,0.65,0.6500,scenario,,,,,,,
+C03,illustrative_A,attribution,input,"Completed -> commission credited (window, no override, eligible item)",share,share,0.7,0.7000,scenario,,,,,,,
+C03,illustrative_A,aov,input,Average order value of referred orders,JPY/order,jpy,5000.0,5000.00,scenario,,,,,,,
+C03,illustrative_A,comm_rate,input,Commission rate,share of order value,share,0.03,0.0300,scenario,,,,,,CLA-S030;CLA-S031,Search-reported ranges; official tables unread by CLA
+C03,illustrative_A,cap_per_order,input,Ordinary per-item reward cap (Rakuten),JPY/order,jpy,1000.0,1000.00,sourced,,,,,,GRO-S039,Observed by GRO on the guideline page; treated as one item per order here
+C03,illustrative_A,clawback,input,Share reversed by cancellation/return,share,share,0.07,0.0700,scenario,,,,,,,
+C03,illustrative_A,passthrough,input,Share of commission returned to user,share,share,0.25,0.2500,scenario,,,,,,,
+C03,illustrative_A,sessions,input,Comparison sessions per active household-month,sessions/household-month,count,3.0,3.0000,scenario,,,,,,,
+C03,illustrative_A,tok_in_sess,input,Input tokens per session,tokens,tokens,15000.0,15000,scenario,,,,,,,
+C03,illustrative_A,tok_out_sess,input,Output tokens per session,tokens,tokens,1500.0,1500,scenario,,,,,,,
+C03,illustrative_A,hosting_c03,input,Variable hosting for comparison,JPY/household-month,jpy,6.0,6.00,scenario,,,,,,,
+C03,illustrative_A,support_c03_rate,input,Support contacts for comparison/handoff,contacts/household-month,count,0.03,0.0300,scenario,,,,,,,
+C03,illustrative_A,support_c03_min,input,Minutes per comparison support contact,minutes,minutes,8.0,8.00,scenario,,,,,,,
+C04,illustrative_A,affected_share,input,Active households with >=1 exception in the month,share,share,0.4,0.4000,scenario,,,,,,,"0.40 is CLA's proposed proceed threshold, not an observed rate"
+C04,illustrative_A,incidents_per_affected,input,Exceptions per affected household-month,cases/household-month,count,1.0,1.0000,scenario,,,,,,,
+C04a,illustrative_A,draft_uptake,input,Detected exceptions for which a draft is generated and used,share,share,0.5,0.5000,scenario,,,,,,,
+C04a,illustrative_A,tok_in_draft,input,Input tokens per draft,tokens,tokens,6000.0,6000,scenario,,,,,,,
+C04a,illustrative_A,tok_out_draft,input,Output tokens per draft,tokens,tokens,800.0,800,scenario,,,,,,,
+C04a,illustrative_A,draft_qa_share,input,Drafts reviewed by a human before sending,share,share,0.1,0.1000,scenario,,,,,,,
+C04a,illustrative_A,draft_qa_min,input,Minutes per human draft review,minutes,minutes,3.0,3.00,scenario,,,,,,,
+C04a,illustrative_A,user_min_per_draft,input,Minutes the USER still spends per drafted case,minutes,minutes,10.0,10.00,scenario,,,,,,,Benefit-side cost borne by user; not provider cost and not zero
+C04b,illustrative_A,submission_prob,input,Affected households that submit the case to the service,share,share,0.5,0.5000,scenario,,,,,,,
+C04b,illustrative_A,human_share,input,Submitted cases handled by a human,share,share,1.0,1.0000,scenario,,,,,,,
+C04b,illustrative_A,base_min,input,First-touch minutes per handled case,minutes,minutes,15.0,15.00,scenario,,,,,,,Includes unsuccessful/unresolved cases
+C04b,illustrative_A,repeat_contacts,input,Repeat contacts per handled case,contacts/case,count,0.5,0.5000,scenario,,,,,,,
+C04b,illustrative_A,repeat_min,input,Minutes per repeat contact,minutes,minutes,5.0,5.00,scenario,,,,,,,
+C04b,illustrative_A,escalation_prob,input,Handled cases escalated,share,share,0.2,0.2000,scenario,,,,,,,
+C04b,illustrative_A,escalation_min,input,Extra minutes per escalation,minutes,minutes,20.0,20.00,scenario,,,,,,,
+C04b,illustrative_A,fp_cases,input,False-positive cases opened per active household-month,cases/household-month,count,0.05,0.0500,scenario,,,,,,,
+C04b,illustrative_A,fp_min,input,Minutes per false-positive case,minutes,minutes,3.0,3.00,scenario,,,,,,,
+C07,illustrative_A,partner_fee,input,Fee paid by partner per MAU-month,JPY/MAU-month,jpy,40.0,40.00,scenario,,,,,,,"CLA's earlier JPY 32-40 was a derived break-even, not a quote"
+C07,illustrative_A,support_transfer,input,Share of tracker support absorbed by partner,share,share,0.5,0.5000,scenario,,,,,,,"Transferred, not eliminated: appears as partner-side cost"
+C07,illustrative_A,partner_integration_per_mau,input,Amortised integration/onboarding/sales cost per MAU-month (startup side),JPY/MAU-month,jpy,,,unknown,,,,,,,Unknown in every scenario: no sales or integration evidence
+COHORT,illustrative_A,cpi,input,Acquisition cost per acquired user,JPY/acquired,jpy,450.0,450.00,scenario,,,,,,CLA-S070;CLA-S071,Dated third-party benchmarks
+COHORT,illustrative_A,activation,input,a = P(activated | acquired),share,share,0.21,0.2100,scenario,,,,,,,Applied exactly once
+COHORT,illustrative_A,p_active_m3,input,P(active in month 3 | activated),share,share,0.2,0.2000,scenario,,,,,,,
+COHORT,illustrative_A,churn_after_m3,input,Monthly churn after month 3 among activated,share/month,share,0.08,0.0800,scenario,,,,,,,
+C01,illustrative_A,cost_per_email,output,Model cost per parsed email (official price x workload assumption),JPY/email,jpy,0.8021249999999999,0.80,calculated_conditional_illustration,,,,,(tok_in*small_in+tok_out*small_out)/1e6*fx*retry_overhead,,
+C01,illustrative_A,c01_emails,output,Emails processed,emails/household-month,count,12.0,12.0000,calculated_conditional_illustration,,,,,orders_hh*emails_per_order,,
+C01,illustrative_A,c01_inference,output,Tracking inference cost,JPY/household-month,jpy,9.625499999999999,9.63,calculated_conditional_illustration,,,,,c01_emails*cost_per_email,,
+C01,illustrative_A,c01_notif,output,Paid notification cost,JPY/household-month,jpy,6.0,6.00,calculated_conditional_illustration,,,,,orders_hh*notif_per_order*line_share*line_price,,
+C01,illustrative_A,c01_support,output,Tracker support cost,JPY/household-month,jpy,12.0,12.00,calculated_conditional_illustration,,,,,support_c01_rate*support_c01_min*labor,,
+C01,illustrative_A,c01_ingest_review,output,Ingestion review cost,JPY/household-month,jpy,10.0,10.00,calculated_conditional_illustration,,,,,ingest_exc_rate*ingest_exc_min*labor,,
+C01,illustrative_A,c01_cost,output,Tracking variable cost,JPY/household-month,jpy,43.6255,43.63,calculated_conditional_illustration,,,,,sum of C01 cost lines + hosting_c01,,
+C01,illustrative_A,c01_sub_revenue,output,Subscription revenue,JPY/household-month,jpy,20.4,20.40,calculated_conditional_illustration,,,,,paid_share*price*(1-store_fee),,
+C01,illustrative_A,c01_revenue,output,Total revenue (subscription + rule-zero passive affiliate),JPY/household-month,jpy,20.4,20.40,calculated_conditional_illustration,passive affiliate = rule zero,n/a,subscription unmeasured,unknown beyond rule zero,c01_sub_revenue+passive_affiliate,,
+C01,illustrative_A,c01_contribution,output,Tracking contribution,JPY/household-month,jpy,-23.225500000000004,-23.23,calculated_conditional_illustration,,,,,c01_revenue-c01_cost,,
+C01,illustrative_A,c01_breakeven_paid_share,output,Paid share needed to cover C01 variable cost,share,share,0.10692524509803922,0.1069,calculated_conditional_illustration,,,,,c01_cost/(price*(1-store_fee)),,
+C02,illustrative_A,c02_contribution_per_attempt,output,Execution contribution per permitted attempt,JPY/attempt,jpy,,,gated_not_computed,no connected permitted path established,standalone merchants/wallets unresearched,execution not approved,unknown,NOT COMPUTED: no connected permitted path (gate),,
+C03,illustrative_A,c03_net_per_txn,output,"Net retained commission per attributable transaction (cap, clawback, pass-through applied once)",JPY/transaction,jpy,104.625,104.62,calculated_conditional_illustration,,,,,"min(aov*comm_rate,cap)*(1-clawback)*(1-passthrough)",,
+C03,illustrative_A,c03_txn_booked,output,Attributable transactions under current underwriting gates,transactions/household-month,count,0.0,0.0000,rule_zero_underwriting_exclusion,,,,,orders*eligible_booked*handoff*completion*attribution,,
+C03,illustrative_A,c03_txn_if_approved,output,Attributable transactions IF program approvals obtained,transactions/household-month,count,0.20475,0.2047,calculated_conditional_illustration,,,,,orders*eligible_if_approved*handoff*completion*attribution,,
+C03,illustrative_A,c03_revenue_booked,output,Booked referral revenue (personal-assistant surface),JPY/household-month,jpy,0.0,0.00,rule_zero_underwriting_exclusion,restricted or unresolved by program x surface,Rakuten closed-tool restriction (search extract); Amazon/Yahoo/ASP surface terms unread,excluded from investment case,unknown,c03_txn_booked*c03_net_per_txn,,
+C03,illustrative_A,c03_revenue_if_approved,output,Conditional referral revenue IF approved,JPY/household-month,jpy,21.421968749999998,21.42,calculated_conditional_illustration,,,,,c03_txn_if_approved*c03_net_per_txn,,
+C03,illustrative_A,cost_per_session,output,Model cost per comparison session,JPY/session,jpy,8.021249999999998,8.02,calculated_conditional_illustration,,,,,(tok_in_sess*mid_in+tok_out_sess*mid_out)/1e6*fx*retry_overhead,,
+C03,illustrative_A,c03_cost,output,Comparison variable cost,JPY/household-month,jpy,42.06375,42.06,calculated_conditional_illustration,,,,,sessions*cost_per_session+hosting_c03+support,,
+C03,illustrative_A,c03_contribution_booked,output,Comparison contribution under current gates,JPY/household-month,jpy,-42.06375,-42.06,calculated_conditional_illustration,restricted or unresolved by program x surface,as above,excluded from investment case,unknown,c03_revenue_booked-c03_cost,,
+C03,illustrative_A,c03_contribution_if_approved,output,Comparison contribution IF approved (conditional),JPY/household-month,jpy,-20.64178125,-20.64,calculated_conditional_illustration,,,,,c03_revenue_if_approved-c03_cost,,
+C04,illustrative_A,c04_cases,output,Exceptions per active household-month,cases/household-month,count,0.4,0.4000,calculated_conditional_illustration,,,,,affected_share*incidents_per_affected,,
+C04a,illustrative_A,c04a_drafts,output,Drafts used,drafts/household-month,count,0.2,0.2000,calculated_conditional_illustration,,,,,c04_cases*draft_uptake,,
+C04a,illustrative_A,cost_per_draft,output,Model cost per draft,JPY/draft,jpy,3.565,3.56,calculated_conditional_illustration,,,,,(tok_in_draft*mid_in+tok_out_draft*mid_out)/1e6*fx*retry_overhead,,
+C04a,illustrative_A,c04a_cost,output,Drafting provider cost incl. human QA,JPY/household-month,jpy,3.7130000000000005,3.71,calculated_conditional_illustration,,,,,drafts*cost_per_draft+drafts*qa_share*qa_min*labor,,
+C04a,illustrative_A,c04a_user_minutes,output,User minutes still spent (benefit-side; not zero),minutes/household-month,minutes,2.0,2.00,calculated_conditional_illustration,,,,,drafts*user_min_per_draft,,
+C04a,illustrative_A,c04a_breakeven_revenue,output,Revenue needed to cover drafting cost (payment mechanism unknown),JPY/household-month,jpy,3.7130000000000005,3.71,calculated_conditional_illustration,,,,,=c04a_cost,,
+C04b,illustrative_A,c04b_handled_cases,output,Human-handled cases,cases/household-month,count,0.2,0.2000,calculated_conditional_illustration,,,,,c04_cases*submission_prob*human_share,,
+C04b,illustrative_A,c04b_min_per_handled,output,Minutes per handled case incl. repeats and escalation,minutes/case,minutes,21.5,21.50,calculated_conditional_illustration,,,,,base_min+repeat_contacts*repeat_min+escalation_prob*escalation_min,,
+C04b,illustrative_A,c04b_labor,output,Human resolution labour incl. false positives,JPY/household-month,jpy,222.5,222.50,calculated_conditional_illustration,,,,,handled*min_per_handled*labor+fp_cases*fp_min*labor,,
+C04b,illustrative_A,c04b_cost_per_handled_case,output,Labour per handled case (break-even per-case fee before other costs),JPY/case,jpy,1112.5,1112.50,calculated_conditional_illustration,,,,,c04b_labor/c04b_handled_cases,,
+C04b,illustrative_A,reviewer_300_check,output,Reviewer arithmetic: 0.40 x 1 case x all submit x all human x 15 min x labour,JPY/household-month,jpy,300.0,300.00,conditional_sensitivity_not_observed,,,,,0.40*1*1*1*15*labor,,
+C07,illustrative_A,c07_startup_cost,output,Startup variable cost per partner MAU incl. integration,JPY/MAU-month,jpy,,,unknown,,,,,inference+hosting+support*(1-transfer)+ingest_review+integration,,
+C07,illustrative_A,c07_startup_cost_excl_integration,output,Startup variable cost per partner MAU excl. unknown integration,JPY/MAU-month,jpy,31.6255,31.63,calculated_conditional_illustration,,,,,inference+hosting+support*(1-transfer)+ingest_review,,
+C07,illustrative_A,c07_contribution,output,Startup contribution per partner MAU (integration unknown -> blank),JPY/MAU-month,jpy,,,unknown,,,,,partner_fee-c07_startup_cost,,
+C07,illustrative_A,c07_contribution_excl_integration,output,Startup contribution per MAU before integration/sales cost (upper bound),JPY/MAU-month,jpy,8.374500000000001,8.37,calculated_conditional_illustration,,,,,partner_fee-c07_startup_cost_excl_integration,,
+C07,illustrative_A,c07_partner_min_benefit,output,"Partner must realise at least this benefit per MAU (fee + transferred support), before its own integration cost",JPY/MAU-month,jpy,46.0,46.00,calculated_conditional_illustration,,,,,partner_fee+support*transfer,,
+C07+C04b,illustrative_A,c07c04b_contribution_excl_integration,output,Partner-fee tracking PLUS human case resolution (upper bound),JPY/MAU-month,jpy,-214.1255,-214.13,calculated_conditional_illustration,,,,,c07_contribution_excl_integration-c04b_labor,,
+C01+C03,illustrative_A,c0103_contribution_booked,output,Explicit combination under current gates,JPY/household-month,jpy,-65.28925000000001,-65.29,calculated_conditional_illustration,,,,,(c01_revenue+c03_revenue_booked)-(c01_cost+c03_cost),,
+COHORT,illustrative_A,payback_c03_if_approved,output,"Payback month per acquired user, C03 if approved (0 = not within 36 months; blank = unknown)",month,months,never,never,not_within_36_months,,,,,a*r_t*c_t cumulative >= cpi,,
+COHORT,illustrative_A,ltv36_per_acquired_c03_if_approved,output,"36-month contribution per acquired user, C03 if approved",JPY/acquired,jpy,-17.136228702493394,-17.14,calculated_conditional_illustration,,,,,sum_t a*r_t*c_t,,
+COHORT,illustrative_A,payback_c01,output,"Payback month per acquired user, C01",month,months,never,never,not_within_36_months,,,,,a*r_t*c_t cumulative >= cpi,,
+COHORT,illustrative_A,ltv36_per_acquired_c01,output,"36-month contribution per acquired user, C01",JPY/acquired,jpy,-19.281159649425152,-19.28,calculated_conditional_illustration,,,,,sum_t a*r_t*c_t,,
+ALL,illustrative_B,fx,input,JPY per USD for API list prices,JPY/USD,ratio,155.0,155.0000,derived_assumption,,,,,,CLA-S090,Search-reported 2026 average ~158; not an official rate
+ALL,illustrative_B,small_in,input,Small-model input list price (Claude Haiku 4.5),USD/M tokens,usd,1.0,1.00,sourced,,,,,,CLA-S091,Official unit price; workload is separate
+ALL,illustrative_B,small_out,input,Small-model output list price,USD/M tokens,usd,5.0,5.00,sourced,,,,,,CLA-S091,
+ALL,illustrative_B,mid_in,input,Mid-model input list price (Claude Sonnet 5.5),USD/M tokens,usd,2.0,2.00,sourced,,,,,,CLA-S091,
+ALL,illustrative_B,mid_out,input,Mid-model output list price,USD/M tokens,usd,10.0,10.00,sourced,,,,,,CLA-S091,
+ALL,illustrative_B,labor_jpy_per_min,input,Human minute priced once (paid staff or founder at replacement cost),JPY/minute,jpy,50.0,50.00,derived_assumption,,,,,,CLA-S073,"From Tokyo CS postings JPY 1,650-1,750/h x ~1.75 load; not a wage statistic"
+C01,illustrative_B,line_price,input,LINE official account additional message (<=200k/month),JPY/message,jpy,3.0,3.00,sourced,,,,,,CLA-S050,Search extract of LY notice effective 2026-10-01
+ALL,illustrative_B,store_fee,input,Billing/app-store fee on subscriptions,share,share,0.15,0.1500,scenario,,,,,,,Not researched
+C01,illustrative_B,orders_hh,input,Physical-goods orders per active household-month,orders/household-month,count,6.0,6.0000,scenario,,,,,,,"No measured frequency (MIC gives spend, not orders)"
+C01,illustrative_B,emails_per_order,input,Commerce emails per order reaching the service,emails/order,count,3.0,3.0000,scenario,,,,,,,Depends on capture method and merchant
+C01,illustrative_B,tok_in_email,input,Input tokens per parsed email,tokens,tokens,2500.0,2500,scenario,,,,,,,"Workload assumption, not measured"
+C01,illustrative_B,tok_out_email,input,Output tokens per parsed email,tokens,tokens,250.0,250,scenario,,,,,,,
+ALL,illustrative_B,retry_overhead,input,Retry/failed-parse multiplier on model workload,multiplier,ratio,1.1,1.1000,scenario,,,,,,,
+C01,illustrative_B,notif_per_order,input,User notifications per order,messages/order,count,2.0,2.0000,scenario,,,,,,,
+C01,illustrative_B,line_share,input,Share of notifications sent as paid LINE messages,share,share,0.0,0.0000,scenario,,,,,,,
+C01,illustrative_B,hosting_c01,input,Variable hosting for tracking,JPY/household-month,jpy,3.0,3.00,scenario,,,,,,,
+C01,illustrative_B,support_c01_rate,input,Support contacts for a read-only tracker (NOT shared with C02/C04),contacts/household-month,count,0.015,0.0150,scenario,,,,,,,Separated per product (Grok v2 correction)
+C01,illustrative_B,support_c01_min,input,Minutes per tracker support contact,minutes,minutes,6.0,6.00,scenario,,,,,,,
+C01,illustrative_B,ingest_exc_rate,input,Ingestion exceptions needing human review (incl. false positives),cases/household-month,count,0.02,0.0200,scenario,,,,,,,
+C01,illustrative_B,ingest_exc_min,input,Minutes per ingestion review,minutes,minutes,3.0,3.00,scenario,,,,,,,
+C01,illustrative_B,paid_share_c01,input,Active households paying a tracker subscription,share,share,0.1,0.1000,scenario,,,,,,,Willingness to pay unmeasured; Parcel's listed price is not a ceiling or evidence of payment
+C01,illustrative_B,price_c01,input,Tracker subscription list price,JPY/month,jpy,480.0,480.00,scenario,,,,,,,
+C01,illustrative_B,passive_affiliate,input,Affiliate revenue from historical receipts (no qualifying click),JPY/household-month,jpy,0.0,0.00,rule,,,,,,GRO-S039;CLA-S030,Rule zero: not a commission-generating event. Distinct from unknown.
+C02,illustrative_B,c02_permitted_path,input,A connected permitted path exists for the intended cross-merchant execution task,boolean,flag,False,False,rule,,,,,,CLA-S046;GRO-S038,None established among researched surfaces; standalone merchants and wallets unresearched
+C03,illustrative_B,c03_eligible_share_booked,input,Share of orders whose program x interface is approved for a personal-assistant surface,share,share,0.0,0.0000,rule,,,,,,CLA-S124;CLA-S125;GRO-S038,Underwriting exclusion: Rakuten restricts closed/one-to-one tools except approved corporate partners; Amazon/Yahoo/ASP terms for this surface unread. Not a measured zero of opportunity.
+C03,illustrative_B,c03_eligible_share_if_approved,input,Share of orders eligible IF program approvals were obtained,share,share,0.85,0.8500,scenario,,,,,,,Conditional on approvals that do not exist today
+C03,illustrative_B,handoff_share,input,Eligible orders started through the assistant,share,share,0.3,0.3000,scenario,,,,,,,No observed behaviour
+C03,illustrative_B,completion,input,Handoff -> user completes purchase on merchant site,share,share,0.8,0.8000,scenario,,,,,,,
+C03,illustrative_B,attribution,input,"Completed -> commission credited (window, no override, eligible item)",share,share,0.85,0.8500,scenario,,,,,,,
+C03,illustrative_B,aov,input,Average order value of referred orders,JPY/order,jpy,6000.0,6000.00,scenario,,,,,,,
+C03,illustrative_B,comm_rate,input,Commission rate,share of order value,share,0.04,0.0400,scenario,,,,,,CLA-S030;CLA-S031,Search-reported ranges; official tables unread by CLA
+C03,illustrative_B,cap_per_order,input,Ordinary per-item reward cap (Rakuten),JPY/order,jpy,1000.0,1000.00,sourced,,,,,,GRO-S039,Observed by GRO on the guideline page; treated as one item per order here
+C03,illustrative_B,clawback,input,Share reversed by cancellation/return,share,share,0.05,0.0500,scenario,,,,,,,
+C03,illustrative_B,passthrough,input,Share of commission returned to user,share,share,0.1,0.1000,scenario,,,,,,,
+C03,illustrative_B,sessions,input,Comparison sessions per active household-month,sessions/household-month,count,4.0,4.0000,scenario,,,,,,,
+C03,illustrative_B,tok_in_sess,input,Input tokens per session,tokens,tokens,12000.0,12000,scenario,,,,,,,
+C03,illustrative_B,tok_out_sess,input,Output tokens per session,tokens,tokens,1200.0,1200,scenario,,,,,,,
+C03,illustrative_B,hosting_c03,input,Variable hosting for comparison,JPY/household-month,jpy,3.0,3.00,scenario,,,,,,,
+C03,illustrative_B,support_c03_rate,input,Support contacts for comparison/handoff,contacts/household-month,count,0.015,0.0150,scenario,,,,,,,
+C03,illustrative_B,support_c03_min,input,Minutes per comparison support contact,minutes,minutes,6.0,6.00,scenario,,,,,,,
+C04,illustrative_B,affected_share,input,Active households with >=1 exception in the month,share,share,0.4,0.4000,scenario,,,,,,,"0.40 is CLA's proposed proceed threshold, not an observed rate"
+C04,illustrative_B,incidents_per_affected,input,Exceptions per affected household-month,cases/household-month,count,1.0,1.0000,scenario,,,,,,,
+C04a,illustrative_B,draft_uptake,input,Detected exceptions for which a draft is generated and used,share,share,0.7,0.7000,scenario,,,,,,,
+C04a,illustrative_B,tok_in_draft,input,Input tokens per draft,tokens,tokens,5000.0,5000,scenario,,,,,,,
+C04a,illustrative_B,tok_out_draft,input,Output tokens per draft,tokens,tokens,600.0,600,scenario,,,,,,,
+C04a,illustrative_B,draft_qa_share,input,Drafts reviewed by a human before sending,share,share,0.05,0.0500,scenario,,,,,,,
+C04a,illustrative_B,draft_qa_min,input,Minutes per human draft review,minutes,minutes,2.0,2.00,scenario,,,,,,,
+C04a,illustrative_B,user_min_per_draft,input,Minutes the USER still spends per drafted case,minutes,minutes,8.0,8.00,scenario,,,,,,,Benefit-side cost borne by user; not provider cost and not zero
+C04b,illustrative_B,submission_prob,input,Affected households that submit the case to the service,share,share,0.25,0.2500,scenario,,,,,,,
+C04b,illustrative_B,human_share,input,Submitted cases handled by a human,share,share,0.5,0.5000,scenario,,,,,,,
+C04b,illustrative_B,base_min,input,First-touch minutes per handled case,minutes,minutes,10.0,10.00,scenario,,,,,,,Includes unsuccessful/unresolved cases
+C04b,illustrative_B,repeat_contacts,input,Repeat contacts per handled case,contacts/case,count,0.3,0.3000,scenario,,,,,,,
+C04b,illustrative_B,repeat_min,input,Minutes per repeat contact,minutes,minutes,4.0,4.00,scenario,,,,,,,
+C04b,illustrative_B,escalation_prob,input,Handled cases escalated,share,share,0.1,0.1000,scenario,,,,,,,
+C04b,illustrative_B,escalation_min,input,Extra minutes per escalation,minutes,minutes,15.0,15.00,scenario,,,,,,,
+C04b,illustrative_B,fp_cases,input,False-positive cases opened per active household-month,cases/household-month,count,0.02,0.0200,scenario,,,,,,,
+C04b,illustrative_B,fp_min,input,Minutes per false-positive case,minutes,minutes,2.0,2.00,scenario,,,,,,,
+C07,illustrative_B,partner_fee,input,Fee paid by partner per MAU-month,JPY/MAU-month,jpy,80.0,80.00,scenario,,,,,,,"CLA's earlier JPY 32-40 was a derived break-even, not a quote"
+C07,illustrative_B,support_transfer,input,Share of tracker support absorbed by partner,share,share,0.5,0.5000,scenario,,,,,,,"Transferred, not eliminated: appears as partner-side cost"
+C07,illustrative_B,partner_integration_per_mau,input,Amortised integration/onboarding/sales cost per MAU-month (startup side),JPY/MAU-month,jpy,,,unknown,,,,,,,Unknown in every scenario: no sales or integration evidence
+COHORT,illustrative_B,cpi,input,Acquisition cost per acquired user,JPY/acquired,jpy,300.0,300.00,scenario,,,,,,CLA-S070;CLA-S071,Dated third-party benchmarks
+COHORT,illustrative_B,activation,input,a = P(activated | acquired),share,share,0.374,0.3740,scenario,,,,,,,Applied exactly once
+COHORT,illustrative_B,p_active_m3,input,P(active in month 3 | activated),share,share,0.35,0.3500,scenario,,,,,,,
+COHORT,illustrative_B,churn_after_m3,input,Monthly churn after month 3 among activated,share/month,share,0.05,0.0500,scenario,,,,,,,
+C01,illustrative_B,cost_per_email,output,Model cost per parsed email (official price x workload assumption),JPY/email,jpy,0.639375,0.64,calculated_conditional_illustration,,,,,(tok_in*small_in+tok_out*small_out)/1e6*fx*retry_overhead,,
+C01,illustrative_B,c01_emails,output,Emails processed,emails/household-month,count,18.0,18.0000,calculated_conditional_illustration,,,,,orders_hh*emails_per_order,,
+C01,illustrative_B,c01_inference,output,Tracking inference cost,JPY/household-month,jpy,11.508750000000001,11.51,calculated_conditional_illustration,,,,,c01_emails*cost_per_email,,
+C01,illustrative_B,c01_notif,output,Paid notification cost,JPY/household-month,jpy,0.0,0.00,calculated_conditional_illustration,,,,,orders_hh*notif_per_order*line_share*line_price,,
+C01,illustrative_B,c01_support,output,Tracker support cost,JPY/household-month,jpy,4.5,4.50,calculated_conditional_illustration,,,,,support_c01_rate*support_c01_min*labor,,
+C01,illustrative_B,c01_ingest_review,output,Ingestion review cost,JPY/household-month,jpy,3.0,3.00,calculated_conditional_illustration,,,,,ingest_exc_rate*ingest_exc_min*labor,,
+C01,illustrative_B,c01_cost,output,Tracking variable cost,JPY/household-month,jpy,22.00875,22.01,calculated_conditional_illustration,,,,,sum of C01 cost lines + hosting_c01,,
+C01,illustrative_B,c01_sub_revenue,output,Subscription revenue,JPY/household-month,jpy,40.8,40.80,calculated_conditional_illustration,,,,,paid_share*price*(1-store_fee),,
+C01,illustrative_B,c01_revenue,output,Total revenue (subscription + rule-zero passive affiliate),JPY/household-month,jpy,40.8,40.80,calculated_conditional_illustration,passive affiliate = rule zero,n/a,subscription unmeasured,unknown beyond rule zero,c01_sub_revenue+passive_affiliate,,
+C01,illustrative_B,c01_contribution,output,Tracking contribution,JPY/household-month,jpy,18.791249999999998,18.79,calculated_conditional_illustration,,,,,c01_revenue-c01_cost,,
+C01,illustrative_B,c01_breakeven_paid_share,output,Paid share needed to cover C01 variable cost,share,share,0.05394301470588235,0.0539,calculated_conditional_illustration,,,,,c01_cost/(price*(1-store_fee)),,
+C02,illustrative_B,c02_contribution_per_attempt,output,Execution contribution per permitted attempt,JPY/attempt,jpy,,,gated_not_computed,no connected permitted path established,standalone merchants/wallets unresearched,execution not approved,unknown,NOT COMPUTED: no connected permitted path (gate),,
+C03,illustrative_B,c03_net_per_txn,output,"Net retained commission per attributable transaction (cap, clawback, pass-through applied once)",JPY/transaction,jpy,205.20000000000002,205.20,calculated_conditional_illustration,,,,,"min(aov*comm_rate,cap)*(1-clawback)*(1-passthrough)",,
+C03,illustrative_B,c03_txn_booked,output,Attributable transactions under current underwriting gates,transactions/household-month,count,0.0,0.0000,rule_zero_underwriting_exclusion,,,,,orders*eligible_booked*handoff*completion*attribution,,
+C03,illustrative_B,c03_txn_if_approved,output,Attributable transactions IF program approvals obtained,transactions/household-month,count,1.0404,1.0404,calculated_conditional_illustration,,,,,orders*eligible_if_approved*handoff*completion*attribution,,
+C03,illustrative_B,c03_revenue_booked,output,Booked referral revenue (personal-assistant surface),JPY/household-month,jpy,0.0,0.00,rule_zero_underwriting_exclusion,restricted or unresolved by program x surface,Rakuten closed-tool restriction (search extract); Amazon/Yahoo/ASP surface terms unread,excluded from investment case,unknown,c03_txn_booked*c03_net_per_txn,,
+C03,illustrative_B,c03_revenue_if_approved,output,Conditional referral revenue IF approved,JPY/household-month,jpy,213.49008,213.49,calculated_conditional_illustration,,,,,c03_txn_if_approved*c03_net_per_txn,,
+C03,illustrative_B,cost_per_session,output,Model cost per comparison session,JPY/session,jpy,6.138,6.14,calculated_conditional_illustration,,,,,(tok_in_sess*mid_in+tok_out_sess*mid_out)/1e6*fx*retry_overhead,,
+C03,illustrative_B,c03_cost,output,Comparison variable cost,JPY/household-month,jpy,32.052,32.05,calculated_conditional_illustration,,,,,sessions*cost_per_session+hosting_c03+support,,
+C03,illustrative_B,c03_contribution_booked,output,Comparison contribution under current gates,JPY/household-month,jpy,-32.052,-32.05,calculated_conditional_illustration,restricted or unresolved by program x surface,as above,excluded from investment case,unknown,c03_revenue_booked-c03_cost,,
+C03,illustrative_B,c03_contribution_if_approved,output,Comparison contribution IF approved (conditional),JPY/household-month,jpy,181.43808,181.44,calculated_conditional_illustration,,,,,c03_revenue_if_approved-c03_cost,,
+C04,illustrative_B,c04_cases,output,Exceptions per active household-month,cases/household-month,count,0.4,0.4000,calculated_conditional_illustration,,,,,affected_share*incidents_per_affected,,
+C04a,illustrative_B,c04a_drafts,output,Drafts used,drafts/household-month,count,0.27999999999999997,0.2800,calculated_conditional_illustration,,,,,c04_cases*draft_uptake,,
+C04a,illustrative_B,cost_per_draft,output,Model cost per draft,JPY/draft,jpy,2.728,2.73,calculated_conditional_illustration,,,,,(tok_in_draft*mid_in+tok_out_draft*mid_out)/1e6*fx*retry_overhead,,
+C04a,illustrative_B,c04a_cost,output,Drafting provider cost incl. human QA,JPY/household-month,jpy,2.16384,2.16,calculated_conditional_illustration,,,,,drafts*cost_per_draft+drafts*qa_share*qa_min*labor,,
+C04a,illustrative_B,c04a_user_minutes,output,User minutes still spent (benefit-side; not zero),minutes/household-month,minutes,2.2399999999999998,2.24,calculated_conditional_illustration,,,,,drafts*user_min_per_draft,,
+C04a,illustrative_B,c04a_breakeven_revenue,output,Revenue needed to cover drafting cost (payment mechanism unknown),JPY/household-month,jpy,2.16384,2.16,calculated_conditional_illustration,,,,,=c04a_cost,,
+C04b,illustrative_B,c04b_handled_cases,output,Human-handled cases,cases/household-month,count,0.05,0.0500,calculated_conditional_illustration,,,,,c04_cases*submission_prob*human_share,,
+C04b,illustrative_B,c04b_min_per_handled,output,Minutes per handled case incl. repeats and escalation,minutes/case,minutes,12.7,12.70,calculated_conditional_illustration,,,,,base_min+repeat_contacts*repeat_min+escalation_prob*escalation_min,,
+C04b,illustrative_B,c04b_labor,output,Human resolution labour incl. false positives,JPY/household-month,jpy,33.75,33.75,calculated_conditional_illustration,,,,,handled*min_per_handled*labor+fp_cases*fp_min*labor,,
+C04b,illustrative_B,c04b_cost_per_handled_case,output,Labour per handled case (break-even per-case fee before other costs),JPY/case,jpy,675.0,675.00,calculated_conditional_illustration,,,,,c04b_labor/c04b_handled_cases,,
+C04b,illustrative_B,reviewer_300_check,output,Reviewer arithmetic: 0.40 x 1 case x all submit x all human x 15 min x labour,JPY/household-month,jpy,300.0,300.00,conditional_sensitivity_not_observed,,,,,0.40*1*1*1*15*labor,,
+C07,illustrative_B,c07_startup_cost,output,Startup variable cost per partner MAU incl. integration,JPY/MAU-month,jpy,,,unknown,,,,,inference+hosting+support*(1-transfer)+ingest_review+integration,,
+C07,illustrative_B,c07_startup_cost_excl_integration,output,Startup variable cost per partner MAU excl. unknown integration,JPY/MAU-month,jpy,19.75875,19.76,calculated_conditional_illustration,,,,,inference+hosting+support*(1-transfer)+ingest_review,,
+C07,illustrative_B,c07_contribution,output,Startup contribution per partner MAU (integration unknown -> blank),JPY/MAU-month,jpy,,,unknown,,,,,partner_fee-c07_startup_cost,,
+C07,illustrative_B,c07_contribution_excl_integration,output,Startup contribution per MAU before integration/sales cost (upper bound),JPY/MAU-month,jpy,60.24125,60.24,calculated_conditional_illustration,,,,,partner_fee-c07_startup_cost_excl_integration,,
+C07,illustrative_B,c07_partner_min_benefit,output,"Partner must realise at least this benefit per MAU (fee + transferred support), before its own integration cost",JPY/MAU-month,jpy,82.25,82.25,calculated_conditional_illustration,,,,,partner_fee+support*transfer,,
+C07+C04b,illustrative_B,c07c04b_contribution_excl_integration,output,Partner-fee tracking PLUS human case resolution (upper bound),JPY/MAU-month,jpy,26.49125,26.49,calculated_conditional_illustration,,,,,c07_contribution_excl_integration-c04b_labor,,
+C01+C03,illustrative_B,c0103_contribution_booked,output,Explicit combination under current gates,JPY/household-month,jpy,-13.260750000000002,-13.26,calculated_conditional_illustration,,,,,(c01_revenue+c03_revenue_booked)-(c01_cost+c03_cost),,
+COHORT,illustrative_B,payback_c03_if_approved,output,"Payback month per acquired user, C03 if approved (0 = not within 36 months; blank = unknown)",month,months,12.0,12,calculated_conditional_illustration,,,,,a*r_t*c_t cumulative >= cpi,,
+COHORT,illustrative_B,ltv36_per_acquired_c03_if_approved,output,"36-month contribution per acquired user, C03 if approved",JPY/acquired,jpy,505.6242311684334,505.62,calculated_conditional_illustration,,,,,sum_t a*r_t*c_t,,
+COHORT,illustrative_B,payback_c01,output,"Payback month per acquired user, C01",month,months,never,never,not_within_36_months,,,,,a*r_t*c_t cumulative >= cpi,,
+COHORT,illustrative_B,ltv36_per_acquired_c01,output,"36-month contribution per acquired user, C01",JPY/acquired,jpy,52.36668804004001,52.37,calculated_conditional_illustration,,,,,sum_t a*r_t*c_t,,
