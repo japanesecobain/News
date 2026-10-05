@@ -1,0 +1,29 @@
+run_at_utc: 2026-10-05T02:44:28+00:00
+model: model/economics_model.py
+
+PASS  roundtrip: every exported output is reproduced from re-imported exported inputs  [225 outputs, 0 mismatches []]
+PASS  display isolation: value_exact equals the in-memory value exactly for every numeric output; display rounding is lossy for some outputs  [lossy display examples: ['llm_jpy_per_request', 'c03_cost_per_request', 'c04_cost_per_request'] (73 total)]
+PASS  unknown: every observed-scenario output that depends on an assumption is blank with status 'unknown'  [0 non-blank]
+PASS  unknown is not zero: no observed-scenario output equals 0
+PASS  C02 revenue is unknown in every scenario (no source), not zero
+PASS  rule zero: class-A share is a labelled rule 0 in every scenario
+PASS  switching GMV is unknown (None), not zero, in every scenario
+PASS  cohort: a*r_t*c equals q_t*c when q_t = a*r_t
+PASS  cohort: passing activation together with acquired-based q_t raises
+PASS  cohort: 'never' payback is distinct from unknown
+PASS  labour: no per-minute price is an input; the only per-minute price is computed once (wage x load / 60)  [[]]
+PASS  labour: labor_jpy_per_min is assigned exactly once
+PASS  frontier: at breakeven minutes, net fee per request equals cost per request (C04)  [fee_net=1431.540000 cost=1431.540000 m*=122.9736]
+PASS  frontier: a negative breakeven is reported as infeasible, not as a usable minute budget
+PASS  paradox (illustrative_tight): steady-state requests do not exceed year-1 backlog when new subs per year ≤ stock
+PASS  paradox (illustrative_tight): steady-state requests scale with the inflow of new subscriptions (doubling inflow doubles them)
+PASS  paradox (illustrative_tight): flag equals sign of user net value
+PASS  paradox (illustrative_loose): steady-state requests do not exceed year-1 backlog when new subs per year ≤ stock
+PASS  paradox (illustrative_loose): steady-state requests scale with the inflow of new subscriptions (doubling inflow doubles them)
+PASS  paradox (illustrative_loose): flag equals sign of user net value
+PASS  C06 outputs carry the legal gate flag in every scenario
+PASS  C08 outputs carry the conflict-of-interest flag
+PASS  inputs: every input has a status in the vocabulary and an evidence field
+
+23/23 passed
+scope: arithmetic, interchange and labelling discipline only; not permission, demand or profitability.

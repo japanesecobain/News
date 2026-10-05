@@ -1,0 +1,6 @@
+register,record_id,field,new_value,previous_value,effective_date,authority,note
+DECISION_LEDGER,R-005,status,PARKED_BY_OWNER,(proposed allocation),2026-10-05,founder instruction in R-007 work order §1,Do not continue R-005 without new explicit instruction
+DECISION_LEDGER,R-003,status,NO_BUILD / NO_PROTOTYPE,NO_BUILD / NO_PROTOTYPE,2026-10-05,founder instruction in R-007 work order §1,Unchanged; not reopened by R-007
+OPPORTUNITY_PORTFOLIO,R-007,status,OPEN (charter written),(new),2026-10-05,R-007 work order,Japan Subscription Cancellation Agent; disposition pending end of R-007
+OPPORTUNITY_PORTFOLIO,R-007,status,PARK,OPEN (charter written),2026-10-05,R-007 research packet (00_DECISION_MEMO.md),Supersedes the OPEN row above (both kept). Unpark triggers: E5 counsel memo positive; E6 partner budget at or above the C07 floor; PR1 hard-route frequency thresholds
+DECISION_LEDGER,R-007,disposition,PARK; single next test E5 (counsel memo; needs expenditure authorisation),(new),2026-10-05,R-007 research packet,Concepts C01-C03 C06 C08 C09 not pursued; C04 C05 C07 parked behind gates; R-003 and R-005 untouched

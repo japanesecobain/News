@@ -1,0 +1,373 @@
+scenario,concept,kind,variable_id,description,unit,unit_class,value_exact,value_display,status,flags,evidence
+observed,input,input,wage_jpy_per_hour,"Posted hourly wage, Kanto phone operators (job-board average)",JPY/hour,jpy,1749.0,"1,749",observed,,R7-E-H02
+observed,input,input,min_wage_jpy_per_hour,National weighted-average minimum wage FY2025 (comparator only),JPY/hour,jpy,1121.0,"1,121",observed,,R7-E-H01
+observed,input,input,load_factor,"Employer load on posted wage (social insurance, supervision, idle time)",ratio,ratio,,UNKNOWN,unknown (assumption not used in observed),,none (assumption)
+observed,input,input,fx_jpy_per_usd,Exchange rate,JPY/USD,ratio,,UNKNOWN,unknown (assumption not used in observed),,none (assumption)
+observed,input,input,llm_price_in_usd_per_mtok,Model input price (tight: mid-tier model; loose: small-tier model),USD/Mtok,usd,,UNKNOWN,unknown (assumption not used in observed),,R7-E-H03 (prices observed; model choice assumed)
+observed,input,input,llm_price_out_usd_per_mtok,Model output price (tight: mid-tier model; loose: small-tier model),USD/Mtok,usd,,UNKNOWN,unknown (assumption not used in observed),,R7-E-H03
+observed,input,input,llm_in_tokens_per_request,"Input tokens per cancellation request (routing, scripts, logs)",tokens,tokens,,UNKNOWN,unknown (assumption not used in observed),,none (assumption)
+observed,input,input,llm_out_tokens_per_request,Output tokens per cancellation request,tokens,tokens,,UNKNOWN,unknown (assumption not used in observed),,none (assumption)
+observed,input,input,infra_jpy_per_user_year,"Hosting, storage, monitoring per paying user-year",JPY/user-year,jpy,,UNKNOWN,unknown (assumption not used in observed),,none (assumption)
+observed,input,input,subs_stock_per_user,Recurring subscriptions held per target user at start,count,count,,UNKNOWN,unknown (assumption not used in observed),,R7-E-B07 (SVOD 2.0 per SVOD user: one category only)
+observed,input,input,unwanted_share,Share of held or new subscriptions the user comes to want cancelled,share,share,,UNKNOWN,unknown (assumption not used in observed),,R7-E-A12 (19.1% hold an unused one: different metric)
+observed,input,input,help_needed_share,Share of wanted cancellations the user would hand to the service,share,share,,UNKNOWN,unknown (assumption not used in observed),,none (H05 untested)
+observed,input,input,new_subs_per_user_year,New recurring subscriptions started per user-year,count/yr,count,,UNKNOWN,unknown (assumption not used in observed),,none (assumption)
+observed,input,input,monthly_price_cancelled_sub_jpy,Monthly price of a typical subscription the user cancels,JPY/month,jpy,,UNKNOWN,unknown (assumption not used in observed),,"R7-E-A14 (modal TOTAL spend ≤¥2,000/month)"
+observed,input,input,months_saved_per_cancellation,Months the user would otherwise have kept paying (counterfactual),months,months,,UNKNOWN,unknown (assumption not used in observed),,none (counterfactual; untested)
+observed,input,input,share_route_A,Share of requests with a machine-executable third-party path,share,share,0.0,0.0000,rule,,R7-E-C24 (no class-A route found; rule zero)
+observed,input,input,share_route_B,Share of requests on user-run routes (handoff),share,share,,UNKNOWN,unknown (assumption not used in observed),,R7-E-C24 (sample 14/22 = 0.636; NOT a market share)
+observed,input,input,handoff_support_min,Agent minutes supporting one user-run (B) request,min,minutes,,UNKNOWN,unknown (assumption not used in observed),,none (assumption)
+observed,input,input,human_min_per_request,"Agent minutes per human-route request (phone, written, visit prep)",min,minutes,,UNKNOWN,unknown (assumption not used in observed),,R7-E-G18 (US: 2-10 business days lead time; minutes not published)
+observed,input,input,phone_cost_jpy_per_human_request,Telephony cost per human-route request,JPY/request,jpy,,UNKNOWN,unknown (assumption not used in observed),,none (assumption)
+observed,input,input,provider_failure_rate,Share of first attempts that fail and must be redone,share,share,,UNKNOWN,unknown (assumption not used in observed),,R7-E-B05; R7-E-A10 (failure modes exist; rate unknown)
+observed,input,input,repeat_contacts_per_failure,Extra attempts per failure,count,count,,UNKNOWN,unknown (assumption not used in observed),,none (assumption)
+observed,input,input,fraud_identity_min_per_request,Minutes on identity and instruction checks per request,min,minutes,,UNKNOWN,unknown (assumption not used in observed),,none (assumption)
+observed,input,input,verification_cost_jpy_per_request,Cost to verify a stop for one request (statement check or receipt),JPY/request,jpy,,UNKNOWN,unknown (assumption not used in observed),,none (assumption); see F.3
+observed,input,input,persist_rate,Share of accepted cancellations where a charge persists without contractual reason,share,share,,UNKNOWN,unknown (assumption not used in observed),,R7-E-A08; R7-E-A10 (exists; rate unknown)
+observed,input,input,sub_price_jpy_month,Consumer subscription price (C01/C03/C05),JPY/month,jpy,,UNKNOWN,unknown (assumption not used in observed),,"R7-E-G10 (¥280); R7-E-G05 (¥360); R7-E-G02 (¥540): anchors, choice assumed"
+observed,input,input,payment_fee_rate,Payment cost as share of revenue (tight: app-store 15%; loose: card 3.6%),share,share,,UNKNOWN,unknown (assumption not used in observed),,none (rates not sourced)
+observed,input,input,per_cancel_fee_jpy,Per-cancellation fee (C04; added in C05),JPY/request,jpy,,UNKNOWN,unknown (assumption not used in observed),,none (assumption)
+observed,input,input,refund_rate,Refunds and chargebacks as share of revenue,share,share,,UNKNOWN,unknown (assumption not used in observed),,none (assumption)
+observed,input,input,guide_revenue_per_user_year,C02 guide revenue (ads or affiliate) per user-year,JPY/user-year,jpy,,UNKNOWN,unknown,,none: no source for guide-site revenue
+observed,input,input,neg_requests_per_user_year,Negotiation attempts per user-year,count/yr,count,,UNKNOWN,unknown (assumption not used in observed),,none (assumption)
+observed,input,input,neg_success_rate,Share of negotiations that lower the price,share,share,,UNKNOWN,unknown (assumption not used in observed),,none (no Japan evidence)
+observed,input,input,neg_annual_savings_jpy,Annual saving per successful negotiation,JPY/success,jpy,,UNKNOWN,unknown (assumption not used in observed),,R7-E-E08 (telecom caps shrink value): no Japan source
+observed,input,input,neg_success_fee_share,Success fee share of first-year savings,share,share,,UNKNOWN,unknown (assumption not used in observed),,R7-E-G20 (US Rocket Money 35-60%)
+observed,input,input,neg_minutes,Agent minutes per negotiation attempt,min,minutes,,UNKNOWN,unknown (assumption not used in observed),,none (assumption)
+observed,input,input,partner_fee_jpy_per_enrolled_month,Partner fee per enrolled user-month,JPY/user-month,jpy,,UNKNOWN,unknown (assumption not used in observed),,none (no Japan B2B2C price found)
+observed,input,input,partner_enrolled_users,Enrolled users per partner,count,count,,UNKNOWN,unknown (assumption not used in observed),,none (assumption)
+observed,input,input,partner_engaged_share,Share of enrolled users who use the service in a year,share,share,,UNKNOWN,unknown (assumption not used in observed),,none (assumption)
+observed,input,input,partner_integration_jpy,One-off integration and security review per partner,JPY/partner,jpy,,UNKNOWN,unknown (assumption not used in observed),,none (assumption)
+observed,input,input,partner_amortisation_years,Years over which integration is amortised,years,count,3.0,3.00,rule,,rule (horizon)
+observed,input,input,partner_sales_cost_jpy,Business-development cost to win one partner (one-off; amortised like integration),JPY/partner,jpy,,UNKNOWN,unknown (assumption not used in observed),,none (assumption); sales cycle not modelled
+observed,input,input,switches_per_user_year,Switching events per user-year,count/yr,count,,UNKNOWN,unknown (assumption not used in observed),,none (assumption)
+observed,input,input,referral_jpy_per_switch,Referral revenue per completed switch,JPY/switch,jpy,,UNKNOWN,unknown (assumption not used in observed),,R7-E-H04 (¥170/household-month × 12 or 24 months; weak)
+observed,input,input,switch_handling_min,Agent minutes per switch,min,minutes,,UNKNOWN,unknown (assumption not used in observed),,none (assumption)
+observed,input,input,cac_jpy,Acquisition cost per acquired user,JPY/user,jpy,,UNKNOWN,unknown (assumption not used in observed),,none (no Japan CAC source)
+observed,input,input,activation,Share of acquired users who become active payers (a),share,share,,UNKNOWN,unknown (assumption not used in observed),,none (assumption)
+observed,input,input,monthly_churn,Monthly churn of active payers (r_t = (1-churn)^(t-1)),share,share,,UNKNOWN,unknown (assumption not used in observed),,none (assumption)
+observed,input,input,target_penetration,Paying share of target users (market illustration only),share,share,,UNKNOWN,unknown (assumption not used in observed),,none (assumption)
+observed,input,input,monthly_sub_spend_jpy,Monthly subscription spend per target user,JPY/month,jpy,,UNKNOWN,unknown (assumption not used in observed),,"R7-E-A14 (modal band ≤¥2,000); R7-E-A18 (unresolved)"
+observed,shared,output,labor_jpy_per_min,labor jpy per min,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,shared,output,llm_jpy_per_request,llm jpy per request,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,shared,output,share_route_human,share route human,share/ratio,share,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,shared,output,rework_multiplier,rework multiplier,share/ratio,share,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,shared,output,requests_year1_per_user,requests year1 per user,count,count,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,shared,output,requests_steady_per_user_year,requests steady per user year,count,count,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,shared,output,paradox_steady_over_year1,paradox steady over year1,share/ratio,share,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,shared,output,savings_per_cancellation_jpy,savings per cancellation jpy,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,shared,output,user_savings_steady_per_year_jpy,user savings steady per year jpy,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,shared,output,sub_price_per_helped_cancellation_steady_jpy,sub price per helped cancellation steady jpy,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,shared,output,user_net_value_steady_c05_jpy,user net value steady c05 jpy,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,shared,output,max_sub_price_justified_by_cancellation_savings_jpy_month,max sub price justified by cancellation savings jpy month,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,shared,output,paradox_flag_subscription_not_justified_by_cancellations,paradox flag subscription not justified by cancellations,1=yes/0=no,flag,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,shared,output,c03_cost_per_request,c03 cost per request,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,shared,output,c04_cost_per_request,c04 cost per request,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,shared,output,c05_cost_per_request,c05 cost per request,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C01,output,C01_revenue_per_user_year,C01 revenue per user year,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C01,output,C01_cost_per_user_year,C01 cost per user year,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C02,output,C02_revenue_per_user_year,C02 revenue per user year,JPY,jpy,,UNKNOWN,unknown,revenue_unknown_no_source,computed in model/economics_model.py
+observed,C02,output,C02_cost_per_user_year,C02 cost per user year,JPY,jpy,,UNKNOWN,unknown,revenue_unknown_no_source,computed in model/economics_model.py
+observed,C03,output,C03_revenue_per_user_year,C03 revenue per user year,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C03,output,C03_cost_per_user_year,C03 cost per user year,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C04,output,C04_revenue_per_user_year,C04 revenue per user year,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C04,output,C04_cost_per_user_year,C04 cost per user year,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C05,output,C05_revenue_per_user_year,C05 revenue per user year,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C05,output,C05_cost_per_user_year,C05 cost per user year,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C06,output,C06_revenue_per_user_year,C06 revenue per user year,JPY,jpy,,UNKNOWN,unknown,legal_gate_L06_unresolved,computed in model/economics_model.py
+observed,C06,output,C06_cost_per_user_year,C06 cost per user year,JPY,jpy,,UNKNOWN,unknown,legal_gate_L06_unresolved,computed in model/economics_model.py
+observed,C08,output,C08_revenue_per_user_year,C08 revenue per user year,JPY,jpy,,UNKNOWN,unknown,conflict_of_interest_gaining_provider_pays,computed in model/economics_model.py
+observed,C08,output,C08_cost_per_user_year,C08 cost per user year,JPY,jpy,,UNKNOWN,unknown,conflict_of_interest_gaining_provider_pays,computed in model/economics_model.py
+observed,C01,output,C01_contribution_per_user_year,C01 contribution per user year,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C01,output,C01_ltv36_per_acquired,C01 ltv36 per acquired,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C01,output,C01_payback_month,C01 payback month,month,months,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C02,output,C02_contribution_per_user_year,C02 contribution per user year,JPY,jpy,,UNKNOWN,unknown,revenue_unknown_no_source,computed in model/economics_model.py
+observed,C02,output,C02_ltv36_per_acquired,C02 ltv36 per acquired,JPY,jpy,,UNKNOWN,unknown,revenue_unknown_no_source,computed in model/economics_model.py
+observed,C02,output,C02_payback_month,C02 payback month,month,months,,UNKNOWN,unknown,revenue_unknown_no_source,computed in model/economics_model.py
+observed,C03,output,C03_contribution_per_user_year,C03 contribution per user year,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C03,output,C03_ltv36_per_acquired,C03 ltv36 per acquired,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C03,output,C03_payback_month,C03 payback month,month,months,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C04,output,C04_contribution_per_user_year,C04 contribution per user year,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C04,output,C04_ltv36_per_acquired,C04 ltv36 per acquired,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C04,output,C04_payback_month,C04 payback month,month,months,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C05,output,C05_contribution_per_user_year,C05 contribution per user year,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C05,output,C05_ltv36_per_acquired,C05 ltv36 per acquired,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C05,output,C05_payback_month,C05 payback month,month,months,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C06,output,C06_contribution_per_user_year,C06 contribution per user year,JPY,jpy,,UNKNOWN,unknown,legal_gate_L06_unresolved,computed in model/economics_model.py
+observed,C06,output,C06_ltv36_per_acquired,C06 ltv36 per acquired,JPY,jpy,,UNKNOWN,unknown,legal_gate_L06_unresolved,computed in model/economics_model.py
+observed,C06,output,C06_payback_month,C06 payback month,month,months,,UNKNOWN,unknown,legal_gate_L06_unresolved,computed in model/economics_model.py
+observed,C08,output,C08_contribution_per_user_year,C08 contribution per user year,JPY,jpy,,UNKNOWN,unknown,conflict_of_interest_gaining_provider_pays,computed in model/economics_model.py
+observed,C08,output,C08_ltv36_per_acquired,C08 ltv36 per acquired,JPY,jpy,,UNKNOWN,unknown,conflict_of_interest_gaining_provider_pays,computed in model/economics_model.py
+observed,C08,output,C08_payback_month,C08 payback month,month,months,,UNKNOWN,unknown,conflict_of_interest_gaining_provider_pays,computed in model/economics_model.py
+observed,C07,output,C07_revenue_per_partner_year,C07 revenue per partner year,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C07,output,C07_cost_per_partner_year,C07 cost per partner year,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C07,output,C07_contribution_per_partner_year,C07 contribution per partner year,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C07,output,C07_breakeven_enrolled_users,C07 breakeven enrolled users,count,count,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C07,output,C07_partner_fee_breakeven_jpy_per_enrolled_month_at_assumed_size,C07 partner fee breakeven jpy per enrolled month at assumed size,count,count,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C04,output,C04_breakeven_human_minutes,C04 breakeven human minutes,min,minutes,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C04,output,C04_breakeven_feasible,C04 breakeven feasible,1=yes/0=no,flag,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C05,output,C05_breakeven_human_minutes_fee_only,C05 breakeven human minutes fee only,min,minutes,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C04,output,C04_fee_share_of_savings,C04 fee share of savings,share/ratio,share,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,shared,output,mkt_subscription_gmv_per_1M_users_year,mkt subscription gmv per 1M users year,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,shared,output,mkt_potential_savings_per_1M_users_year,mkt potential savings per 1M users year,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,shared,output,mkt_switching_gmv_per_1M_users_year,mkt switching gmv per 1M users year,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C01,output,mkt_C01_startup_revenue_per_1M_users_year,mkt C01 startup revenue per 1M users year,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C01,output,mkt_C01_startup_contribution_per_1M_users_year,mkt C01 startup contribution per 1M users year,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C03,output,mkt_C03_startup_revenue_per_1M_users_year,mkt C03 startup revenue per 1M users year,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C03,output,mkt_C03_startup_contribution_per_1M_users_year,mkt C03 startup contribution per 1M users year,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C04,output,mkt_C04_startup_revenue_per_1M_users_year,mkt C04 startup revenue per 1M users year,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C04,output,mkt_C04_startup_contribution_per_1M_users_year,mkt C04 startup contribution per 1M users year,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C05,output,mkt_C05_startup_revenue_per_1M_users_year,mkt C05 startup revenue per 1M users year,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C05,output,mkt_C05_startup_contribution_per_1M_users_year,mkt C05 startup contribution per 1M users year,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+observed,C06,output,mkt_C06_startup_revenue_per_1M_users_year,mkt C06 startup revenue per 1M users year,JPY,jpy,,UNKNOWN,unknown,legal_gate_L06_unresolved,computed in model/economics_model.py
+observed,C06,output,mkt_C06_startup_contribution_per_1M_users_year,mkt C06 startup contribution per 1M users year,JPY,jpy,,UNKNOWN,unknown,legal_gate_L06_unresolved,computed in model/economics_model.py
+observed,C08,output,mkt_C08_startup_revenue_per_1M_users_year,mkt C08 startup revenue per 1M users year,JPY,jpy,,UNKNOWN,unknown,conflict_of_interest_gaining_provider_pays,computed in model/economics_model.py
+observed,C08,output,mkt_C08_startup_contribution_per_1M_users_year,mkt C08 startup contribution per 1M users year,JPY,jpy,,UNKNOWN,unknown,conflict_of_interest_gaining_provider_pays,computed in model/economics_model.py
+illustrative_tight,input,input,wage_jpy_per_hour,"Posted hourly wage, Kanto phone operators (job-board average)",JPY/hour,jpy,1749.0,"1,749",observed,,R7-E-H02
+illustrative_tight,input,input,min_wage_jpy_per_hour,National weighted-average minimum wage FY2025 (comparator only),JPY/hour,jpy,1121.0,"1,121",observed,,R7-E-H01
+illustrative_tight,input,input,load_factor,"Employer load on posted wage (social insurance, supervision, idle time)",ratio,ratio,1.6,1.60,assumption,,none (assumption)
+illustrative_tight,input,input,fx_jpy_per_usd,Exchange rate,JPY/USD,ratio,160.0,160,assumption,,none (assumption)
+illustrative_tight,input,input,llm_price_in_usd_per_mtok,Model input price (tight: mid-tier model; loose: small-tier model),USD/Mtok,usd,2.0,2.00,assumption,,R7-E-H03 (prices observed; model choice assumed)
+illustrative_tight,input,input,llm_price_out_usd_per_mtok,Model output price (tight: mid-tier model; loose: small-tier model),USD/Mtok,usd,10.0,10.00,assumption,,R7-E-H03
+illustrative_tight,input,input,llm_in_tokens_per_request,"Input tokens per cancellation request (routing, scripts, logs)",tokens,tokens,60000.0,"60,000",assumption,,none (assumption)
+illustrative_tight,input,input,llm_out_tokens_per_request,Output tokens per cancellation request,tokens,tokens,6000.0,"6,000",assumption,,none (assumption)
+illustrative_tight,input,input,infra_jpy_per_user_year,"Hosting, storage, monitoring per paying user-year",JPY/user-year,jpy,600.0,600,assumption,,none (assumption)
+illustrative_tight,input,input,subs_stock_per_user,Recurring subscriptions held per target user at start,count,count,2.0,2.00,assumption,,R7-E-B07 (SVOD 2.0 per SVOD user: one category only)
+illustrative_tight,input,input,unwanted_share,Share of held or new subscriptions the user comes to want cancelled,share,share,0.3,0.3000,assumption,,R7-E-A12 (19.1% hold an unused one: different metric)
+illustrative_tight,input,input,help_needed_share,Share of wanted cancellations the user would hand to the service,share,share,0.3,0.3000,assumption,,none (H05 untested)
+illustrative_tight,input,input,new_subs_per_user_year,New recurring subscriptions started per user-year,count/yr,count,1.0,1.00,assumption,,none (assumption)
+illustrative_tight,input,input,monthly_price_cancelled_sub_jpy,Monthly price of a typical subscription the user cancels,JPY/month,jpy,1000.0,"1,000",assumption,,"R7-E-A14 (modal TOTAL spend ≤¥2,000/month)"
+illustrative_tight,input,input,months_saved_per_cancellation,Months the user would otherwise have kept paying (counterfactual),months,months,3.0,3.00,assumption,,none (counterfactual; untested)
+illustrative_tight,input,input,share_route_A,Share of requests with a machine-executable third-party path,share,share,0.0,0.0000,rule,,R7-E-C24 (no class-A route found; rule zero)
+illustrative_tight,input,input,share_route_B,Share of requests on user-run routes (handoff),share,share,0.5,0.5000,assumption,,R7-E-C24 (sample 14/22 = 0.636; NOT a market share)
+illustrative_tight,input,input,handoff_support_min,Agent minutes supporting one user-run (B) request,min,minutes,6.0,6.00,assumption,,none (assumption)
+illustrative_tight,input,input,human_min_per_request,"Agent minutes per human-route request (phone, written, visit prep)",min,minutes,45.0,45.00,assumption,,R7-E-G18 (US: 2-10 business days lead time; minutes not published)
+illustrative_tight,input,input,phone_cost_jpy_per_human_request,Telephony cost per human-route request,JPY/request,jpy,100.0,100,assumption,,none (assumption)
+illustrative_tight,input,input,provider_failure_rate,Share of first attempts that fail and must be redone,share,share,0.3,0.3000,assumption,,R7-E-B05; R7-E-A10 (failure modes exist; rate unknown)
+illustrative_tight,input,input,repeat_contacts_per_failure,Extra attempts per failure,count,count,2.0,2.00,assumption,,none (assumption)
+illustrative_tight,input,input,fraud_identity_min_per_request,Minutes on identity and instruction checks per request,min,minutes,5.0,5.00,assumption,,none (assumption)
+illustrative_tight,input,input,verification_cost_jpy_per_request,Cost to verify a stop for one request (statement check or receipt),JPY/request,jpy,50.0,50.00,assumption,,none (assumption); see F.3
+illustrative_tight,input,input,persist_rate,Share of accepted cancellations where a charge persists without contractual reason,share,share,0.1,0.1000,assumption,,R7-E-A08; R7-E-A10 (exists; rate unknown)
+illustrative_tight,input,input,sub_price_jpy_month,Consumer subscription price (C01/C03/C05),JPY/month,jpy,300.0,300,assumption,,"R7-E-G10 (¥280); R7-E-G05 (¥360); R7-E-G02 (¥540): anchors, choice assumed"
+illustrative_tight,input,input,payment_fee_rate,Payment cost as share of revenue (tight: app-store 15%; loose: card 3.6%),share,share,0.15,0.1500,assumption,,none (rates not sourced)
+illustrative_tight,input,input,per_cancel_fee_jpy,Per-cancellation fee (C04; added in C05),JPY/request,jpy,500.0,500,assumption,,none (assumption)
+illustrative_tight,input,input,refund_rate,Refunds and chargebacks as share of revenue,share,share,0.05,0.0500,assumption,,none (assumption)
+illustrative_tight,input,input,guide_revenue_per_user_year,C02 guide revenue (ads or affiliate) per user-year,JPY/user-year,jpy,,UNKNOWN,unknown,,none: no source for guide-site revenue
+illustrative_tight,input,input,neg_requests_per_user_year,Negotiation attempts per user-year,count/yr,count,0.2,0.20,assumption,,none (assumption)
+illustrative_tight,input,input,neg_success_rate,Share of negotiations that lower the price,share,share,0.2,0.2000,assumption,,none (no Japan evidence)
+illustrative_tight,input,input,neg_annual_savings_jpy,Annual saving per successful negotiation,JPY/success,jpy,3000.0,"3,000",assumption,,R7-E-E08 (telecom caps shrink value): no Japan source
+illustrative_tight,input,input,neg_success_fee_share,Success fee share of first-year savings,share,share,0.35,0.3500,assumption,,R7-E-G20 (US Rocket Money 35-60%)
+illustrative_tight,input,input,neg_minutes,Agent minutes per negotiation attempt,min,minutes,30.0,30.00,assumption,,none (assumption)
+illustrative_tight,input,input,partner_fee_jpy_per_enrolled_month,Partner fee per enrolled user-month,JPY/user-month,jpy,20.0,20.00,assumption,,none (no Japan B2B2C price found)
+illustrative_tight,input,input,partner_enrolled_users,Enrolled users per partner,count,count,50000.0,50000.00,assumption,,none (assumption)
+illustrative_tight,input,input,partner_engaged_share,Share of enrolled users who use the service in a year,share,share,0.1,0.1000,assumption,,none (assumption)
+illustrative_tight,input,input,partner_integration_jpy,One-off integration and security review per partner,JPY/partner,jpy,20000000.0,"20,000,000",assumption,,none (assumption)
+illustrative_tight,input,input,partner_amortisation_years,Years over which integration is amortised,years,count,3.0,3.00,rule,,rule (horizon)
+illustrative_tight,input,input,partner_sales_cost_jpy,Business-development cost to win one partner (one-off; amortised like integration),JPY/partner,jpy,10000000.0,"10,000,000",assumption,,none (assumption); sales cycle not modelled
+illustrative_tight,input,input,switches_per_user_year,Switching events per user-year,count/yr,count,0.05,0.05,assumption,,none (assumption)
+illustrative_tight,input,input,referral_jpy_per_switch,Referral revenue per completed switch,JPY/switch,jpy,2040.0,"2,040",assumption,,R7-E-H04 (¥170/household-month × 12 or 24 months; weak)
+illustrative_tight,input,input,switch_handling_min,Agent minutes per switch,min,minutes,10.0,10.00,assumption,,none (assumption)
+illustrative_tight,input,input,cac_jpy,Acquisition cost per acquired user,JPY/user,jpy,3000.0,"3,000",assumption,,none (no Japan CAC source)
+illustrative_tight,input,input,activation,Share of acquired users who become active payers (a),share,share,0.3,0.3000,assumption,,none (assumption)
+illustrative_tight,input,input,monthly_churn,Monthly churn of active payers (r_t = (1-churn)^(t-1)),share,share,0.1,0.1000,assumption,,none (assumption)
+illustrative_tight,input,input,target_penetration,Paying share of target users (market illustration only),share,share,0.01,0.0100,assumption,,none (assumption)
+illustrative_tight,input,input,monthly_sub_spend_jpy,Monthly subscription spend per target user,JPY/month,jpy,2000.0,"2,000",assumption,,"R7-E-A14 (modal band ≤¥2,000); R7-E-A18 (unresolved)"
+illustrative_tight,shared,output,labor_jpy_per_min,labor jpy per min,JPY,jpy,46.64,46.64,calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,shared,output,llm_jpy_per_request,llm jpy per request,JPY,jpy,28.799999999999997,28.80,calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,shared,output,share_route_human,share route human,share/ratio,share,0.5,0.5000,calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,shared,output,rework_multiplier,rework multiplier,share/ratio,share,1.6,1.6000,calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,shared,output,requests_year1_per_user,requests year1 per user,count,count,0.18,0.18,calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,shared,output,requests_steady_per_user_year,requests steady per user year,count,count,0.09,0.09,calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,shared,output,paradox_steady_over_year1,paradox steady over year1,share/ratio,share,0.5,0.5000,calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,shared,output,savings_per_cancellation_jpy,savings per cancellation jpy,JPY,jpy,3000.0,"3,000",calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,shared,output,user_savings_steady_per_year_jpy,user savings steady per year jpy,JPY,jpy,270.0,270,calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,shared,output,sub_price_per_helped_cancellation_steady_jpy,sub price per helped cancellation steady jpy,JPY,jpy,40000.0,"40,000",calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,shared,output,user_net_value_steady_c05_jpy,user net value steady c05 jpy,JPY,jpy,-3330.0,"-3,330",calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,shared,output,max_sub_price_justified_by_cancellation_savings_jpy_month,max sub price justified by cancellation savings jpy month,JPY,jpy,22.5,22.50,calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,shared,output,paradox_flag_subscription_not_justified_by_cancellations,paradox flag subscription not justified by cancellations,1=yes/0=no,flag,1.0,yes,calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,shared,output,c03_cost_per_request,c03 cost per request,JPY,jpy,709.7440000000001,710,calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,shared,output,c04_cost_per_request,c04 cost per request,JPY,jpy,2214.9120000000003,"2,215",calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,shared,output,c05_cost_per_request,c05 cost per request,JPY,jpy,2264.9120000000003,"2,265",calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C01,output,C01_revenue_per_user_year,C01 revenue per user year,JPY,jpy,3060.0,"3,060",calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C01,output,C01_cost_per_user_year,C01 cost per user year,JPY,jpy,753.0,753,calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C02,output,C02_revenue_per_user_year,C02 revenue per user year,JPY,jpy,,UNKNOWN,unknown,revenue_unknown_no_source,computed in model/economics_model.py
+illustrative_tight,C02,output,C02_cost_per_user_year,C02 cost per user year,JPY,jpy,600.0,600,calculated_illustrative,revenue_unknown_no_source,computed in model/economics_model.py
+illustrative_tight,C03,output,C03_revenue_per_user_year,C03 revenue per user year,JPY,jpy,3060.0,"3,060",calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C03,output,C03_cost_per_user_year,C03 cost per user year,JPY,jpy,816.87696,817,calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C04,output,C04_revenue_per_user_year,C04 revenue per user year,JPY,jpy,38.25,38.25,calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C04,output,C04_cost_per_user_year,C04 cost per user year,JPY,jpy,801.25458,801,calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C05,output,C05_revenue_per_user_year,C05 revenue per user year,JPY,jpy,3094.425,"3,094",calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C05,output,C05_cost_per_user_year,C05 cost per user year,JPY,jpy,958.5633300000001,959,calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C06,output,C06_revenue_per_user_year,C06 revenue per user year,JPY,jpy,35.7,35.70,calculated_illustrative,legal_gate_L06_unresolved,computed in model/economics_model.py
+illustrative_tight,C06,output,C06_cost_per_user_year,C06 cost per user year,JPY,jpy,281.62500000000006,282,calculated_illustrative,legal_gate_L06_unresolved,computed in model/economics_model.py
+illustrative_tight,C08,output,C08_revenue_per_user_year,C08 revenue per user year,JPY,jpy,102.0,102,calculated_illustrative,conflict_of_interest_gaining_provider_pays,computed in model/economics_model.py
+illustrative_tight,C08,output,C08_cost_per_user_year,C08 cost per user year,JPY,jpy,23.32,23.32,calculated_illustrative,conflict_of_interest_gaining_provider_pays,computed in model/economics_model.py
+illustrative_tight,C01,output,C01_contribution_per_user_year,C01 contribution per user year,JPY,jpy,2307.0,"2,307",calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C01,output,C01_ltv36_per_acquired,C01 ltv36 per acquired,JPY,jpy,563.7567455624566,564,calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C01,output,C01_payback_month,C01 payback month,month,months,never,never,not_within_horizon,,computed in model/economics_model.py
+illustrative_tight,C02,output,C02_contribution_per_user_year,C02 contribution per user year,JPY,jpy,,UNKNOWN,unknown,revenue_unknown_no_source,computed in model/economics_model.py
+illustrative_tight,C02,output,C02_ltv36_per_acquired,C02 ltv36 per acquired,JPY,jpy,,UNKNOWN,unknown,revenue_unknown_no_source,computed in model/economics_model.py
+illustrative_tight,C02,output,C02_payback_month,C02 payback month,month,months,,UNKNOWN,unknown,revenue_unknown_no_source,computed in model/economics_model.py
+illustrative_tight,C03,output,C03_contribution_per_user_year,C03 contribution per user year,JPY,jpy,2243.12304,"2,243",calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C03,output,C03_ltv36_per_acquired,C03 ltv36 per acquired,JPY,jpy,548.1472669816054,548,calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C03,output,C03_payback_month,C03 payback month,month,months,never,never,not_within_horizon,,computed in model/economics_model.py
+illustrative_tight,C04,output,C04_contribution_per_user_year,C04 contribution per user year,JPY,jpy,-763.00458,-763,calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C04,output,C04_ltv36_per_acquired,C04 ltv36 per acquired,JPY,jpy,-186.45382699178543,-186,calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C04,output,C04_payback_month,C04 payback month,month,months,never,never,not_within_horizon,,computed in model/economics_model.py
+illustrative_tight,C05,output,C05_contribution_per_user_year,C05 contribution per user year,JPY,jpy,2135.8616700000002,"2,136",calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C05,output,C05_ltv36_per_acquired,C05 ltv36 per acquired,JPY,jpy,521.93603123138,522,calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C05,output,C05_payback_month,C05 payback month,month,months,never,never,not_within_horizon,,computed in model/economics_model.py
+illustrative_tight,C06,output,C06_contribution_per_user_year,C06 contribution per user year,JPY,jpy,-245.92500000000007,-246,calculated_illustrative,legal_gate_L06_unresolved,computed in model/economics_model.py
+illustrative_tight,C06,output,C06_ltv36_per_acquired,C06 ltv36 per acquired,JPY,jpy,-60.096175835477744,-60.10,calculated_illustrative,legal_gate_L06_unresolved,computed in model/economics_model.py
+illustrative_tight,C06,output,C06_payback_month,C06 payback month,month,months,never,never,not_within_horizon,legal_gate_L06_unresolved,computed in model/economics_model.py
+illustrative_tight,C08,output,C08_contribution_per_user_year,C08 contribution per user year,JPY,jpy,78.68,78.68,calculated_illustrative,conflict_of_interest_gaining_provider_pays,computed in model/economics_model.py
+illustrative_tight,C08,output,C08_ltv36_per_acquired,C08 ltv36 per acquired,JPY,jpy,19.226866380951048,19.23,calculated_illustrative,conflict_of_interest_gaining_provider_pays,computed in model/economics_model.py
+illustrative_tight,C08,output,C08_payback_month,C08 payback month,month,months,never,never,not_within_horizon,conflict_of_interest_gaining_provider_pays,computed in model/economics_model.py
+illustrative_tight,C07,output,C07_revenue_per_partner_year,C07 revenue per partner year,JPY,jpy,12000000.0,"12,000,000",calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C07,output,C07_cost_per_partner_year,C07 cost per partner year,JPY,jpy,11019210.4,"11,019,210",calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C07,output,C07_contribution_per_partner_year,C07 contribution per partner year,JPY,jpy,980789.5999999996,"980,790",calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C07,output,C07_breakeven_enrolled_users,C07 breakeven enrolled users,count,count,45534.06614766574,45534.07,calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C07,output,C07_partner_fee_breakeven_jpy_per_enrolled_month_at_assumed_size,C07 partner fee breakeven jpy per enrolled month at assumed size,count,count,18.365350666666668,18.37,calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C04,output,C04_breakeven_human_minutes,C04 breakeven human minutes,min,minutes,-3.541005574614065,-3.54,calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C04,output,C04_breakeven_feasible,C04 breakeven feasible,1=yes/0=no,flag,0.0,no,calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C05,output,C05_breakeven_human_minutes_fee_only,C05 breakeven human minutes fee only,min,minutes,-6.0201007718696395,-6.02,calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C04,output,C04_fee_share_of_savings,C04 fee share of savings,share/ratio,share,0.16666666666666666,0.1667,calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,shared,output,mkt_subscription_gmv_per_1M_users_year,mkt subscription gmv per 1M users year,JPY,jpy,24000000000.0,"24,000,000,000",calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,shared,output,mkt_potential_savings_per_1M_users_year,mkt potential savings per 1M users year,JPY,jpy,270000000.0,"270,000,000",calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,shared,output,mkt_switching_gmv_per_1M_users_year,mkt switching gmv per 1M users year,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+illustrative_tight,C01,output,mkt_C01_startup_revenue_per_1M_users_year,mkt C01 startup revenue per 1M users year,JPY,jpy,30600000.0,"30,600,000",calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C01,output,mkt_C01_startup_contribution_per_1M_users_year,mkt C01 startup contribution per 1M users year,JPY,jpy,23070000.0,"23,070,000",calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C03,output,mkt_C03_startup_revenue_per_1M_users_year,mkt C03 startup revenue per 1M users year,JPY,jpy,30600000.0,"30,600,000",calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C03,output,mkt_C03_startup_contribution_per_1M_users_year,mkt C03 startup contribution per 1M users year,JPY,jpy,22431230.4,"22,431,230",calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C04,output,mkt_C04_startup_revenue_per_1M_users_year,mkt C04 startup revenue per 1M users year,JPY,jpy,382500.0,"382,500",calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C04,output,mkt_C04_startup_contribution_per_1M_users_year,mkt C04 startup contribution per 1M users year,JPY,jpy,-7630045.800000001,"-7,630,046",calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C05,output,mkt_C05_startup_revenue_per_1M_users_year,mkt C05 startup revenue per 1M users year,JPY,jpy,30944250.0,"30,944,250",calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C05,output,mkt_C05_startup_contribution_per_1M_users_year,mkt C05 startup contribution per 1M users year,JPY,jpy,21358616.700000003,"21,358,617",calculated_illustrative,,computed in model/economics_model.py
+illustrative_tight,C06,output,mkt_C06_startup_revenue_per_1M_users_year,mkt C06 startup revenue per 1M users year,JPY,jpy,357000.0,"357,000",calculated_illustrative,legal_gate_L06_unresolved,computed in model/economics_model.py
+illustrative_tight,C06,output,mkt_C06_startup_contribution_per_1M_users_year,mkt C06 startup contribution per 1M users year,JPY,jpy,-2459250.0000000005,"-2,459,250",calculated_illustrative,legal_gate_L06_unresolved,computed in model/economics_model.py
+illustrative_tight,C08,output,mkt_C08_startup_revenue_per_1M_users_year,mkt C08 startup revenue per 1M users year,JPY,jpy,1020000.0,"1,020,000",calculated_illustrative,conflict_of_interest_gaining_provider_pays,computed in model/economics_model.py
+illustrative_tight,C08,output,mkt_C08_startup_contribution_per_1M_users_year,mkt C08 startup contribution per 1M users year,JPY,jpy,786800.0000000001,"786,800",calculated_illustrative,conflict_of_interest_gaining_provider_pays,computed in model/economics_model.py
+illustrative_loose,input,input,wage_jpy_per_hour,"Posted hourly wage, Kanto phone operators (job-board average)",JPY/hour,jpy,1749.0,"1,749",observed,,R7-E-H02
+illustrative_loose,input,input,min_wage_jpy_per_hour,National weighted-average minimum wage FY2025 (comparator only),JPY/hour,jpy,1121.0,"1,121",observed,,R7-E-H01
+illustrative_loose,input,input,load_factor,"Employer load on posted wage (social insurance, supervision, idle time)",ratio,ratio,1.3,1.30,assumption,,none (assumption)
+illustrative_loose,input,input,fx_jpy_per_usd,Exchange rate,JPY/USD,ratio,140.0,140,assumption,,none (assumption)
+illustrative_loose,input,input,llm_price_in_usd_per_mtok,Model input price (tight: mid-tier model; loose: small-tier model),USD/Mtok,usd,1.0,1.00,assumption,,R7-E-H03 (prices observed; model choice assumed)
+illustrative_loose,input,input,llm_price_out_usd_per_mtok,Model output price (tight: mid-tier model; loose: small-tier model),USD/Mtok,usd,5.0,5.00,assumption,,R7-E-H03
+illustrative_loose,input,input,llm_in_tokens_per_request,"Input tokens per cancellation request (routing, scripts, logs)",tokens,tokens,20000.0,"20,000",assumption,,none (assumption)
+illustrative_loose,input,input,llm_out_tokens_per_request,Output tokens per cancellation request,tokens,tokens,2000.0,"2,000",assumption,,none (assumption)
+illustrative_loose,input,input,infra_jpy_per_user_year,"Hosting, storage, monitoring per paying user-year",JPY/user-year,jpy,200.0,200,assumption,,none (assumption)
+illustrative_loose,input,input,subs_stock_per_user,Recurring subscriptions held per target user at start,count,count,3.0,3.00,assumption,,R7-E-B07 (SVOD 2.0 per SVOD user: one category only)
+illustrative_loose,input,input,unwanted_share,Share of held or new subscriptions the user comes to want cancelled,share,share,0.5,0.5000,assumption,,R7-E-A12 (19.1% hold an unused one: different metric)
+illustrative_loose,input,input,help_needed_share,Share of wanted cancellations the user would hand to the service,share,share,0.6,0.6000,assumption,,none (H05 untested)
+illustrative_loose,input,input,new_subs_per_user_year,New recurring subscriptions started per user-year,count/yr,count,2.0,2.00,assumption,,none (assumption)
+illustrative_loose,input,input,monthly_price_cancelled_sub_jpy,Monthly price of a typical subscription the user cancels,JPY/month,jpy,1500.0,"1,500",assumption,,"R7-E-A14 (modal TOTAL spend ≤¥2,000/month)"
+illustrative_loose,input,input,months_saved_per_cancellation,Months the user would otherwise have kept paying (counterfactual),months,months,6.0,6.00,assumption,,none (counterfactual; untested)
+illustrative_loose,input,input,share_route_A,Share of requests with a machine-executable third-party path,share,share,0.0,0.0000,rule,,R7-E-C24 (no class-A route found; rule zero)
+illustrative_loose,input,input,share_route_B,Share of requests on user-run routes (handoff),share,share,0.75,0.7500,assumption,,R7-E-C24 (sample 14/22 = 0.636; NOT a market share)
+illustrative_loose,input,input,handoff_support_min,Agent minutes supporting one user-run (B) request,min,minutes,2.0,2.00,assumption,,none (assumption)
+illustrative_loose,input,input,human_min_per_request,"Agent minutes per human-route request (phone, written, visit prep)",min,minutes,15.0,15.00,assumption,,R7-E-G18 (US: 2-10 business days lead time; minutes not published)
+illustrative_loose,input,input,phone_cost_jpy_per_human_request,Telephony cost per human-route request,JPY/request,jpy,30.0,30.00,assumption,,none (assumption)
+illustrative_loose,input,input,provider_failure_rate,Share of first attempts that fail and must be redone,share,share,0.1,0.1000,assumption,,R7-E-B05; R7-E-A10 (failure modes exist; rate unknown)
+illustrative_loose,input,input,repeat_contacts_per_failure,Extra attempts per failure,count,count,1.0,1.00,assumption,,none (assumption)
+illustrative_loose,input,input,fraud_identity_min_per_request,Minutes on identity and instruction checks per request,min,minutes,2.0,2.00,assumption,,none (assumption)
+illustrative_loose,input,input,verification_cost_jpy_per_request,Cost to verify a stop for one request (statement check or receipt),JPY/request,jpy,10.0,10.00,assumption,,none (assumption); see F.3
+illustrative_loose,input,input,persist_rate,Share of accepted cancellations where a charge persists without contractual reason,share,share,0.03,0.0300,assumption,,R7-E-A08; R7-E-A10 (exists; rate unknown)
+illustrative_loose,input,input,sub_price_jpy_month,Consumer subscription price (C01/C03/C05),JPY/month,jpy,540.0,540,assumption,,"R7-E-G10 (¥280); R7-E-G05 (¥360); R7-E-G02 (¥540): anchors, choice assumed"
+illustrative_loose,input,input,payment_fee_rate,Payment cost as share of revenue (tight: app-store 15%; loose: card 3.6%),share,share,0.036,0.0360,assumption,,none (rates not sourced)
+illustrative_loose,input,input,per_cancel_fee_jpy,Per-cancellation fee (C04; added in C05),JPY/request,jpy,1500.0,"1,500",assumption,,none (assumption)
+illustrative_loose,input,input,refund_rate,Refunds and chargebacks as share of revenue,share,share,0.01,0.0100,assumption,,none (assumption)
+illustrative_loose,input,input,guide_revenue_per_user_year,C02 guide revenue (ads or affiliate) per user-year,JPY/user-year,jpy,,UNKNOWN,unknown,,none: no source for guide-site revenue
+illustrative_loose,input,input,neg_requests_per_user_year,Negotiation attempts per user-year,count/yr,count,0.5,0.50,assumption,,none (assumption)
+illustrative_loose,input,input,neg_success_rate,Share of negotiations that lower the price,share,share,0.5,0.5000,assumption,,none (no Japan evidence)
+illustrative_loose,input,input,neg_annual_savings_jpy,Annual saving per successful negotiation,JPY/success,jpy,6000.0,"6,000",assumption,,R7-E-E08 (telecom caps shrink value): no Japan source
+illustrative_loose,input,input,neg_success_fee_share,Success fee share of first-year savings,share,share,0.6,0.6000,assumption,,R7-E-G20 (US Rocket Money 35-60%)
+illustrative_loose,input,input,neg_minutes,Agent minutes per negotiation attempt,min,minutes,15.0,15.00,assumption,,none (assumption)
+illustrative_loose,input,input,partner_fee_jpy_per_enrolled_month,Partner fee per enrolled user-month,JPY/user-month,jpy,60.0,60.00,assumption,,none (no Japan B2B2C price found)
+illustrative_loose,input,input,partner_enrolled_users,Enrolled users per partner,count,count,200000.0,200000.00,assumption,,none (assumption)
+illustrative_loose,input,input,partner_engaged_share,Share of enrolled users who use the service in a year,share,share,0.3,0.3000,assumption,,none (assumption)
+illustrative_loose,input,input,partner_integration_jpy,One-off integration and security review per partner,JPY/partner,jpy,5000000.0,"5,000,000",assumption,,none (assumption)
+illustrative_loose,input,input,partner_amortisation_years,Years over which integration is amortised,years,count,3.0,3.00,rule,,rule (horizon)
+illustrative_loose,input,input,partner_sales_cost_jpy,Business-development cost to win one partner (one-off; amortised like integration),JPY/partner,jpy,3000000.0,"3,000,000",assumption,,none (assumption); sales cycle not modelled
+illustrative_loose,input,input,switches_per_user_year,Switching events per user-year,count/yr,count,0.2,0.20,assumption,,none (assumption)
+illustrative_loose,input,input,referral_jpy_per_switch,Referral revenue per completed switch,JPY/switch,jpy,4080.0,"4,080",assumption,,R7-E-H04 (¥170/household-month × 12 or 24 months; weak)
+illustrative_loose,input,input,switch_handling_min,Agent minutes per switch,min,minutes,5.0,5.00,assumption,,none (assumption)
+illustrative_loose,input,input,cac_jpy,Acquisition cost per acquired user,JPY/user,jpy,1000.0,"1,000",assumption,,none (no Japan CAC source)
+illustrative_loose,input,input,activation,Share of acquired users who become active payers (a),share,share,0.6,0.6000,assumption,,none (assumption)
+illustrative_loose,input,input,monthly_churn,Monthly churn of active payers (r_t = (1-churn)^(t-1)),share,share,0.04,0.0400,assumption,,none (assumption)
+illustrative_loose,input,input,target_penetration,Paying share of target users (market illustration only),share,share,0.05,0.0500,assumption,,none (assumption)
+illustrative_loose,input,input,monthly_sub_spend_jpy,Monthly subscription spend per target user,JPY/month,jpy,3000.0,"3,000",assumption,,"R7-E-A14 (modal band ≤¥2,000); R7-E-A18 (unresolved)"
+illustrative_loose,shared,output,labor_jpy_per_min,labor jpy per min,JPY,jpy,37.895,37.90,calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,shared,output,llm_jpy_per_request,llm jpy per request,JPY,jpy,4.2,4.20,calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,shared,output,share_route_human,share route human,share/ratio,share,0.25,0.2500,calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,shared,output,rework_multiplier,rework multiplier,share/ratio,share,1.1,1.1000,calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,shared,output,requests_year1_per_user,requests year1 per user,count,count,0.8999999999999999,0.90,calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,shared,output,requests_steady_per_user_year,requests steady per user year,count,count,0.6,0.60,calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,shared,output,paradox_steady_over_year1,paradox steady over year1,share/ratio,share,0.6666666666666667,0.6667,calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,shared,output,savings_per_cancellation_jpy,savings per cancellation jpy,JPY,jpy,9000.0,"9,000",calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,shared,output,user_savings_steady_per_year_jpy,user savings steady per year jpy,JPY,jpy,5400.0,"5,400",calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,shared,output,sub_price_per_helped_cancellation_steady_jpy,sub price per helped cancellation steady jpy,JPY,jpy,10800.0,"10,800",calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,shared,output,user_net_value_steady_c05_jpy,user net value steady c05 jpy,JPY,jpy,-1080.0,"-1,080",calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,shared,output,max_sub_price_justified_by_cancellation_savings_jpy_month,max sub price justified by cancellation savings jpy month,JPY,jpy,450.0,450,calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,shared,output,paradox_flag_subscription_not_justified_by_cancellations,paradox flag subscription not justified by cancellations,1=yes/0=no,flag,1.0,yes,calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,shared,output,c03_cost_per_request,c03 cost per request,JPY,jpy,163.35900000000004,163,calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,shared,output,c04_cost_per_request,c04 cost per request,JPY,jpy,306.33362500000004,306,calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,shared,output,c05_cost_per_request,c05 cost per request,JPY,jpy,316.33362500000004,316,calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C01,output,C01_revenue_per_user_year,C01 revenue per user year,JPY,jpy,6246.719999999999,"6,247",calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C01,output,C01_cost_per_user_year,C01 cost per user year,JPY,jpy,262.4672,262,calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C02,output,C02_revenue_per_user_year,C02 revenue per user year,JPY,jpy,,UNKNOWN,unknown,revenue_unknown_no_source,computed in model/economics_model.py
+illustrative_loose,C02,output,C02_cost_per_user_year,C02 cost per user year,JPY,jpy,200.0,200,calculated_illustrative,revenue_unknown_no_source,computed in model/economics_model.py
+illustrative_loose,C03,output,C03_revenue_per_user_year,C03 revenue per user year,JPY,jpy,6246.719999999999,"6,247",calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C03,output,C03_cost_per_user_year,C03 cost per user year,JPY,jpy,360.4826,360,calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C04,output,C04_revenue_per_user_year,C04 revenue per user year,JPY,jpy,867.6,868,calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C04,output,C04_cost_per_user_year,C04 cost per user year,JPY,jpy,392.476175,392,calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C05,output,C05_revenue_per_user_year,C05 revenue per user year,JPY,jpy,7088.2919999999995,"7,088",calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C05,output,C05_cost_per_user_year,C05 cost per user year,JPY,jpy,460.68309500000004,461,calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C06,output,C06_revenue_per_user_year,C06 revenue per user year,JPY,jpy,867.6,868,calculated_illustrative,legal_gate_L06_unresolved,computed in model/economics_model.py
+illustrative_loose,C06,output,C06_cost_per_user_year,C06 cost per user year,JPY,jpy,292.8885,293,calculated_illustrative,legal_gate_L06_unresolved,computed in model/economics_model.py
+illustrative_loose,C08,output,C08_revenue_per_user_year,C08 revenue per user year,JPY,jpy,816.0,816,calculated_illustrative,conflict_of_interest_gaining_provider_pays,computed in model/economics_model.py
+illustrative_loose,C08,output,C08_cost_per_user_year,C08 cost per user year,JPY,jpy,37.895,37.90,calculated_illustrative,conflict_of_interest_gaining_provider_pays,computed in model/economics_model.py
+illustrative_loose,C01,output,C01_contribution_per_user_year,C01 contribution per user year,JPY,jpy,5984.252799999999,"5,984",calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C01,output,C01_ltv36_per_acquired,C01 ltv36 per acquired,JPY,jpy,5759.698506314397,"5,760",calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C01,output,C01_payback_month,C01 payback month,month,months,4.0,4.00,calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C02,output,C02_contribution_per_user_year,C02 contribution per user year,JPY,jpy,,UNKNOWN,unknown,revenue_unknown_no_source,computed in model/economics_model.py
+illustrative_loose,C02,output,C02_ltv36_per_acquired,C02 ltv36 per acquired,JPY,jpy,,UNKNOWN,unknown,revenue_unknown_no_source,computed in model/economics_model.py
+illustrative_loose,C02,output,C02_payback_month,C02 payback month,month,months,,UNKNOWN,unknown,revenue_unknown_no_source,computed in model/economics_model.py
+illustrative_loose,C03,output,C03_contribution_per_user_year,C03 contribution per user year,JPY,jpy,5886.237399999999,"5,886",calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C03,output,C03_ltv36_per_acquired,C03 ltv36 per acquired,JPY,jpy,5665.361055701379,"5,665",calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C03,output,C03_payback_month,C03 payback month,month,months,4.0,4.00,calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C04,output,C04_contribution_per_user_year,C04 contribution per user year,JPY,jpy,475.123825,475,calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C04,output,C04_ltv36_per_acquired,C04 ltv36 per acquired,JPY,jpy,457.2951839813456,457,calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C04,output,C04_payback_month,C04 payback month,month,months,never,never,not_within_horizon,,computed in model/economics_model.py
+illustrative_loose,C05,output,C05_contribution_per_user_year,C05 contribution per user year,JPY,jpy,6627.608904999999,"6,628",calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C05,output,C05_ltv36_per_acquired,C05 ltv36 per acquired,JPY,jpy,6378.9131887216545,"6,379",calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C05,output,C05_payback_month,C05 payback month,month,months,4.0,4.00,calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C06,output,C06_contribution_per_user_year,C06 contribution per user year,JPY,jpy,574.7115,575,calculated_illustrative,legal_gate_L06_unresolved,computed in model/economics_model.py
+illustrative_loose,C06,output,C06_ltv36_per_acquired,C06 ltv36 per acquired,JPY,jpy,553.1459112341822,553,calculated_illustrative,legal_gate_L06_unresolved,computed in model/economics_model.py
+illustrative_loose,C06,output,C06_payback_month,C06 payback month,month,months,never,never,not_within_horizon,legal_gate_L06_unresolved,computed in model/economics_model.py
+illustrative_loose,C08,output,C08_contribution_per_user_year,C08 contribution per user year,JPY,jpy,778.105,778,calculated_illustrative,conflict_of_interest_gaining_provider_pays,computed in model/economics_model.py
+illustrative_loose,C08,output,C08_ltv36_per_acquired,C08 ltv36 per acquired,JPY,jpy,748.9072330393132,749,calculated_illustrative,conflict_of_interest_gaining_provider_pays,computed in model/economics_model.py
+illustrative_loose,C08,output,C08_payback_month,C08 payback month,month,months,never,never,not_within_horizon,conflict_of_interest_gaining_provider_pays,computed in model/economics_model.py
+illustrative_loose,C07,output,C07_revenue_per_partner_year,C07 revenue per partner year,JPY,jpy,144000000.0,"144,000,000",calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C07,output,C07_cost_per_partner_year,C07 cost per partner year,JPY,jpy,14054677.166666668,"14,054,677",calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C07,output,C07_contribution_per_partner_year,C07 contribution per partner year,JPY,jpy,129945322.83333333,"129,945,323",calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C07,output,C07_breakeven_enrolled_users,C07 breakeven enrolled users,count,count,4021.758027642993,4021.76,calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C07,output,C07_partner_fee_breakeven_jpy_per_enrolled_month_at_assumed_size,C07 partner fee breakeven jpy per enrolled month at assumed size,count,count,5.856115486111111,5.86,calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C04,output,C04_breakeven_human_minutes,C04 breakeven human minutes,min,minutes,122.9735992994998,122.97,calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C04,output,C04_breakeven_feasible,C04 breakeven feasible,1=yes/0=no,flag,1.0,yes,calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C05,output,C05_breakeven_human_minutes_fee_only,C05 breakeven human minutes fee only,min,minutes,117.85131163861865,117.85,calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C04,output,C04_fee_share_of_savings,C04 fee share of savings,share/ratio,share,0.16666666666666666,0.1667,calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,shared,output,mkt_subscription_gmv_per_1M_users_year,mkt subscription gmv per 1M users year,JPY,jpy,36000000000.0,"36,000,000,000",calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,shared,output,mkt_potential_savings_per_1M_users_year,mkt potential savings per 1M users year,JPY,jpy,5400000000.0,"5,400,000,000",calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,shared,output,mkt_switching_gmv_per_1M_users_year,mkt switching gmv per 1M users year,JPY,jpy,,UNKNOWN,unknown,,computed in model/economics_model.py
+illustrative_loose,C01,output,mkt_C01_startup_revenue_per_1M_users_year,mkt C01 startup revenue per 1M users year,JPY,jpy,312335999.99999994,"312,336,000",calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C01,output,mkt_C01_startup_contribution_per_1M_users_year,mkt C01 startup contribution per 1M users year,JPY,jpy,299212639.99999994,"299,212,640",calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C03,output,mkt_C03_startup_revenue_per_1M_users_year,mkt C03 startup revenue per 1M users year,JPY,jpy,312335999.99999994,"312,336,000",calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C03,output,mkt_C03_startup_contribution_per_1M_users_year,mkt C03 startup contribution per 1M users year,JPY,jpy,294311869.99999994,"294,311,870",calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C04,output,mkt_C04_startup_revenue_per_1M_users_year,mkt C04 startup revenue per 1M users year,JPY,jpy,43380000.0,"43,380,000",calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C04,output,mkt_C04_startup_contribution_per_1M_users_year,mkt C04 startup contribution per 1M users year,JPY,jpy,23756191.25,"23,756,191",calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C05,output,mkt_C05_startup_revenue_per_1M_users_year,mkt C05 startup revenue per 1M users year,JPY,jpy,354414600.0,"354,414,600",calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C05,output,mkt_C05_startup_contribution_per_1M_users_year,mkt C05 startup contribution per 1M users year,JPY,jpy,331380445.24999994,"331,380,445",calculated_illustrative,,computed in model/economics_model.py
+illustrative_loose,C06,output,mkt_C06_startup_revenue_per_1M_users_year,mkt C06 startup revenue per 1M users year,JPY,jpy,43380000.0,"43,380,000",calculated_illustrative,legal_gate_L06_unresolved,computed in model/economics_model.py
+illustrative_loose,C06,output,mkt_C06_startup_contribution_per_1M_users_year,mkt C06 startup contribution per 1M users year,JPY,jpy,28735575.0,"28,735,575",calculated_illustrative,legal_gate_L06_unresolved,computed in model/economics_model.py
+illustrative_loose,C08,output,mkt_C08_startup_revenue_per_1M_users_year,mkt C08 startup revenue per 1M users year,JPY,jpy,40800000.0,"40,800,000",calculated_illustrative,conflict_of_interest_gaining_provider_pays,computed in model/economics_model.py
+illustrative_loose,C08,output,mkt_C08_startup_contribution_per_1M_users_year,mkt C08 startup contribution per 1M users year,JPY,jpy,38905250.0,"38,905,250",calculated_illustrative,conflict_of_interest_gaining_provider_pays,computed in model/economics_model.py

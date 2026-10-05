@@ -1,0 +1,197 @@
+run_at_utc: 2026-10-05T02:37:10Z
+python: Python 3.11.15
+
+===== python3 model/check_charter.py =====
+WNTB rows: ['A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'D1', 'D2', 'E1', 'E2', 'E3', 'F1', 'G1', 'G2', 'H1', 'I1', 'J1f', 'K1', 'L1']
+CHARTER CHECK PASS
+exit=0
+
+===== python3 model/build_registers.py =====
+claims=105 sources=109 families=91 competitors=19 roundtrip_mismatches=0
+status counts: {'calculated': 5, 'company-reported': 26, 'corroborated': 1, 'inference': 2, 'reported_unopened': 63, 'unresolved': 8}
+route classes (purposive sample, not market shares): {'A': 0, 'B': 14, 'C': 0, 'D': 0, 'E': 8} | concierge_status: {'UNKNOWN': 9, 'family-only': 2, 'not stated': 11} | legal rows: 22 {'law': 13, 'provider contract': 3, 'technical restriction': 2, 'unknown': 4} | architectures: {'Carrier portal with re-auth': 2, 'Formal written agency (restricted)': 2, 'In person / written': 1, 'Phone-only with fee window': 1, 'Phone-only with retention script': 2, 'Platform settings': 2, 'Skip / pause ≠ cancel': 1, 'Term contract (cancel ≠ charges stop)': 2, 'UNKNOWN': 1, 'Web self-serve behind login': 8}
+exit=0
+
+===== python3 model/state_model.py =====
+PASS  every state has a transition entry and a definition
+PASS  every transition target is a defined state
+PASS  CHARGE_STOPPED is unreachable without CANCELLATION_ACCEPTED
+PASS  CHARGE_STOPPED is unreachable without CANCELLATION_EFFECTIVE
+PASS  CHARGE_STOPPED is unreachable without VERIFICATION_PENDING (a billing cycle observed)
+PASS  CANCELLATION_EFFECTIVE is unreachable without PROVIDER_CONTACTED
+PASS  no direct edge from request or acceptance to CHARGE_STOPPED
+PASS  pause/skip and account deletion are not success states
+PASS  contractual continuing charges are distinct from persisted charges
+PASS  disputes are a hand-off terminal (J6 excluded)
+PASS  every non-terminal state can still reach a terminal state
+PASS  success is reachable from a confirmed subscription
+PASS  every edge case is mapped
+13/13 passed; states=23; edge cases=15
+scope: structural invariants of a design artefact. They do not show that any route is executable or permitted.
+exit=0
+
+===== python3 model/economics_model.py =====
+[observed]
+  labor_jpy_per_min = UNKNOWN
+  requests_year1_per_user = UNKNOWN
+  requests_steady_per_user_year = UNKNOWN
+  paradox_steady_over_year1 = UNKNOWN
+  savings_per_cancellation_jpy = UNKNOWN
+  sub_price_per_helped_cancellation_steady_jpy = UNKNOWN
+  user_net_value_steady_c05_jpy = UNKNOWN
+  max_sub_price_justified_by_cancellation_savings_jpy_month = UNKNOWN
+  paradox_flag_subscription_not_justified_by_cancellations = UNKNOWN
+  c03_cost_per_request = UNKNOWN
+  c04_cost_per_request = UNKNOWN
+  c05_cost_per_request = UNKNOWN
+  C04_breakeven_human_minutes = UNKNOWN
+  C04_breakeven_feasible = UNKNOWN
+  C05_breakeven_human_minutes_fee_only = UNKNOWN
+  C04_fee_share_of_savings = UNKNOWN
+  C07_partner_fee_breakeven_jpy_per_enrolled_month_at_assumed_size = UNKNOWN
+  mkt_subscription_gmv_per_1M_users_year = UNKNOWN
+  mkt_potential_savings_per_1M_users_year = UNKNOWN
+  mkt_C01_startup_revenue_per_1M_users_year = UNKNOWN
+  mkt_C04_startup_revenue_per_1M_users_year = UNKNOWN
+  mkt_C05_startup_revenue_per_1M_users_year = UNKNOWN
+  mkt_C05_startup_contribution_per_1M_users_year = UNKNOWN
+  C01: contribution/user-yr=UNKNOWN LTV36/acquired=UNKNOWN payback=UNKNOWN
+  C02: contribution/user-yr=UNKNOWN LTV36/acquired=UNKNOWN payback=UNKNOWN
+  C03: contribution/user-yr=UNKNOWN LTV36/acquired=UNKNOWN payback=UNKNOWN
+  C04: contribution/user-yr=UNKNOWN LTV36/acquired=UNKNOWN payback=UNKNOWN
+  C05: contribution/user-yr=UNKNOWN LTV36/acquired=UNKNOWN payback=UNKNOWN
+  C06: contribution/user-yr=UNKNOWN LTV36/acquired=UNKNOWN payback=UNKNOWN
+  C08: contribution/user-yr=UNKNOWN LTV36/acquired=UNKNOWN payback=UNKNOWN
+  C07: contribution/partner-yr=UNKNOWN breakeven enrolled=UNKNOWN
+[illustrative_tight]
+  labor_jpy_per_min = 46.64
+  requests_year1_per_user = 0.18
+  requests_steady_per_user_year = 0.09
+  paradox_steady_over_year1 = 0.5000
+  savings_per_cancellation_jpy = 3,000
+  sub_price_per_helped_cancellation_steady_jpy = 40,000
+  user_net_value_steady_c05_jpy = -3,330
+  max_sub_price_justified_by_cancellation_savings_jpy_month = 22.50
+  paradox_flag_subscription_not_justified_by_cancellations = yes
+  c03_cost_per_request = 710
+  c04_cost_per_request = 2,215
+  c05_cost_per_request = 2,265
+  C04_breakeven_human_minutes = -3.54
+  C04_breakeven_feasible = no
+  C05_breakeven_human_minutes_fee_only = -6.02
+  C04_fee_share_of_savings = 0.1667
+  C07_partner_fee_breakeven_jpy_per_enrolled_month_at_assumed_size = 18.37
+  mkt_subscription_gmv_per_1M_users_year = 24,000,000,000
+  mkt_potential_savings_per_1M_users_year = 270,000,000
+  mkt_C01_startup_revenue_per_1M_users_year = 30,600,000
+  mkt_C04_startup_revenue_per_1M_users_year = 382,500
+  mkt_C05_startup_revenue_per_1M_users_year = 30,944,250
+  mkt_C05_startup_contribution_per_1M_users_year = 21,358,617
+  C01: contribution/user-yr=2,307 LTV36/acquired=564 payback=never
+  C02: contribution/user-yr=UNKNOWN LTV36/acquired=UNKNOWN payback=UNKNOWN
+  C03: contribution/user-yr=2,243 LTV36/acquired=548 payback=never
+  C04: contribution/user-yr=-763 LTV36/acquired=-186 payback=never
+  C05: contribution/user-yr=2,136 LTV36/acquired=522 payback=never
+  C06: contribution/user-yr=-246 LTV36/acquired=-60.10 payback=never
+  C08: contribution/user-yr=78.68 LTV36/acquired=19.23 payback=never
+  C07: contribution/partner-yr=980,790 breakeven enrolled=45534.07
+[illustrative_loose]
+  labor_jpy_per_min = 37.90
+  requests_year1_per_user = 0.90
+  requests_steady_per_user_year = 0.60
+  paradox_steady_over_year1 = 0.6667
+  savings_per_cancellation_jpy = 9,000
+  sub_price_per_helped_cancellation_steady_jpy = 10,800
+  user_net_value_steady_c05_jpy = -1,080
+  max_sub_price_justified_by_cancellation_savings_jpy_month = 450
+  paradox_flag_subscription_not_justified_by_cancellations = yes
+  c03_cost_per_request = 163
+  c04_cost_per_request = 306
+  c05_cost_per_request = 316
+  C04_breakeven_human_minutes = 122.97
+  C04_breakeven_feasible = yes
+  C05_breakeven_human_minutes_fee_only = 117.85
+  C04_fee_share_of_savings = 0.1667
+  C07_partner_fee_breakeven_jpy_per_enrolled_month_at_assumed_size = 5.86
+  mkt_subscription_gmv_per_1M_users_year = 36,000,000,000
+  mkt_potential_savings_per_1M_users_year = 5,400,000,000
+  mkt_C01_startup_revenue_per_1M_users_year = 312,336,000
+  mkt_C04_startup_revenue_per_1M_users_year = 43,380,000
+  mkt_C05_startup_revenue_per_1M_users_year = 354,414,600
+  mkt_C05_startup_contribution_per_1M_users_year = 331,380,445
+  C01: contribution/user-yr=5,984 LTV36/acquired=5,760 payback=4.00
+  C02: contribution/user-yr=UNKNOWN LTV36/acquired=UNKNOWN payback=UNKNOWN
+  C03: contribution/user-yr=5,886 LTV36/acquired=5,665 payback=4.00
+  C04: contribution/user-yr=475 LTV36/acquired=457 payback=never
+  C05: contribution/user-yr=6,628 LTV36/acquired=6,379 payback=4.00
+  C06: contribution/user-yr=575 LTV36/acquired=553 payback=never
+  C08: contribution/user-yr=778 LTV36/acquired=749 payback=never
+  C07: contribution/partner-yr=129,945,323 breakeven enrolled=4021.76
+exit=0
+
+===== python3 model/test_economics.py =====
+run_at_utc: 2026-10-05T02:37:10+00:00
+model: model/economics_model.py
+
+PASS  roundtrip: every exported output is reproduced from re-imported exported inputs  [225 outputs, 0 mismatches []]
+PASS  display isolation: value_exact equals the in-memory value exactly for every numeric output; display rounding is lossy for some outputs  [lossy display examples: ['llm_jpy_per_request', 'c03_cost_per_request', 'c04_cost_per_request'] (73 total)]
+PASS  unknown: every observed-scenario output that depends on an assumption is blank with status 'unknown'  [0 non-blank]
+PASS  unknown is not zero: no observed-scenario output equals 0
+PASS  C02 revenue is unknown in every scenario (no source), not zero
+PASS  rule zero: class-A share is a labelled rule 0 in every scenario
+PASS  switching GMV is unknown (None), not zero, in every scenario
+PASS  cohort: a*r_t*c equals q_t*c when q_t = a*r_t
+PASS  cohort: passing activation together with acquired-based q_t raises
+PASS  cohort: 'never' payback is distinct from unknown
+PASS  labour: no per-minute price is an input; the only per-minute price is computed once (wage x load / 60)  [[]]
+PASS  labour: labor_jpy_per_min is assigned exactly once
+PASS  frontier: at breakeven minutes, net fee per request equals cost per request (C04)  [fee_net=1431.540000 cost=1431.540000 m*=122.9736]
+PASS  frontier: a negative breakeven is reported as infeasible, not as a usable minute budget
+PASS  paradox (illustrative_tight): steady-state requests do not exceed year-1 backlog when new subs per year ≤ stock
+PASS  paradox (illustrative_tight): steady-state requests scale with the inflow of new subscriptions (doubling inflow doubles them)
+PASS  paradox (illustrative_tight): flag equals sign of user net value
+PASS  paradox (illustrative_loose): steady-state requests do not exceed year-1 backlog when new subs per year ≤ stock
+PASS  paradox (illustrative_loose): steady-state requests scale with the inflow of new subscriptions (doubling inflow doubles them)
+PASS  paradox (illustrative_loose): flag equals sign of user net value
+PASS  C06 outputs carry the legal gate flag in every scenario
+PASS  C08 outputs carry the conflict-of-interest flag
+PASS  inputs: every input has a status in the vocabulary and an evidence field
+
+23/23 passed
+scope: arithmetic, interchange and labelling discipline only; not permission, demand or profitability.
+exit=0
+
+===== python3 model/qa_crossrefs.py =====
+PASS  00_DECISION_MEMO.md: every cited evidence ID exists (0 cited)
+PASS  00_DECISION_MEMO.md: every cited competitor ID exists
+PASS  00_DECISION_MEMO.md: every cited route ID exists
+PASS  00_DECISION_MEMO.md: every cited legal row exists
+PASS  00_DECISION_MEMO.md: every cited experiment exists
+PASS  01_RESEARCH_REPORT.md: every cited evidence ID exists (78 cited)
+PASS  01_RESEARCH_REPORT.md: every cited competitor ID exists
+PASS  01_RESEARCH_REPORT.md: every cited route ID exists
+PASS  01_RESEARCH_REPORT.md: every cited legal row exists
+PASS  01_RESEARCH_REPORT.md: every cited experiment exists
+PASS  11_MOAT_AND_RIGHT_TO_WIN.md: every cited evidence ID exists (32 cited)
+PASS  11_MOAT_AND_RIGHT_TO_WIN.md: every cited competitor ID exists
+PASS  11_MOAT_AND_RIGHT_TO_WIN.md: every cited route ID exists
+PASS  11_MOAT_AND_RIGHT_TO_WIN.md: every cited legal row exists
+PASS  11_MOAT_AND_RIGHT_TO_WIN.md: every cited experiment exists
+PASS  memo figure: C07 fee floor tight 18.37 and loose 5.86
+PASS  memo figure: subscription justified by cancellations 22.50 / 450
+PASS  memo figure: C04 payback never in both illustrations
+PASS  memo figure: C04 breakeven minutes infeasible (tight) and about 123 (loose)
+PASS  memo figure: route sample 14 of 22 are class B
+PASS  memo figure: paradox flag yes in both illustrations
+PASS  memo figure: MF 17.3M in ledger and memo
+PASS  memo figure: Moneytree about 6.5M and MUFG date in ledger and memo
+PASS  memo figure: 46.0% in ledger and memo
+PASS  memo figure: Rocket Money $390M and about 2.5M cancellations in ledger and memo
+PASS  memo figure: about 0.25 cancellations per app user
+PASS  memo figure: 71.6% / 17.9% recorded as not found and not used as evidence
+PASS  report ends with the six mandatory closing sections in order
+PASS  'most likely wrong' lists at least 5 points
+PASS  decision memo is 800-1,200 words
+PASS  memo leads with one disposition
+31/31 passed
+exit=0
